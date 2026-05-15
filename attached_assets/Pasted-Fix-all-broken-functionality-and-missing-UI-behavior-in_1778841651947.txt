@@ -1,0 +1,203 @@
+Fix all broken functionality and missing UI behavior in the NutriScan AI application.
+
+CURRENT ISSUES TO FIX:
+1. Analytics page is not working
+2. AI Insights page is not working
+3. Settings page is not working
+4. Uploaded food images are not displaying in History cards
+5. Image preview is missing in scan history modal
+6. Broken routes/navigation may exist
+7. Some components show empty or placeholder content
+
+---------------------------------------------------
+IMAGE STORAGE FIX (IMPORTANT)
+---------------------------------------------------
+
+Problem:
+Uploaded food images are not appearing in history cards.
+
+Fix this properly:
+- Store uploaded images correctly
+- Ensure image URL/base64 persists in database
+- Save image path during upload
+- Render image previews in:
+  - History cards
+  - Analysis modal
+  - Scan detail pages
+
+Requirements:
+- Add fallback placeholder image
+- Add image loading skeleton
+- Prevent broken image icons
+- Optimize image rendering
+- Preserve aspect ratio
+- Add smooth hover zoom effect
+
+History cards should display:
+- Actual uploaded food image
+- Overlay gradient
+- Health score badge
+- Meal name
+- Calories
+- Macros
+
+---------------------------------------------------
+ANALYTICS PAGE IMPLEMENTATION
+---------------------------------------------------
+
+Create a fully working Analytics page.
+
+Features:
+- Weekly calorie tracking chart
+- Macronutrient distribution charts
+- Health score trends
+- Daily nutrition breakdown
+- Progress tracking
+- AI-generated health summaries
+- Interactive graphs using Recharts
+
+Add:
+- Time filters
+- Weekly/monthly toggle
+- Average nutrition statistics
+- Best meal score
+- Worst meal score
+- Total scans
+- Nutrient intake trends
+
+UI:
+- Premium glassmorphism cards
+- Animated charts
+- Responsive layout
+- Smooth loading states
+
+---------------------------------------------------
+AI INSIGHTS PAGE IMPLEMENTATION
+---------------------------------------------------
+
+Create a complete AI Insights dashboard.
+
+Features:
+- Personalized AI nutrition recommendations
+- Meal improvement suggestions
+- Deficiency detection
+- Healthy eating tips
+- Smart alerts
+- Nutrition pattern analysis
+- AI-generated summaries
+- Goal tracking
+
+Add sections:
+- Today's AI insights
+- Weekly health summary
+- Suggested healthier alternatives
+- Vitamin deficiency warnings
+- Hydration reminders
+- Protein/fiber recommendations
+
+UI:
+- Futuristic AI dashboard
+- Animated cards
+- Glow effects
+- Expandable recommendation sections
+- AI assistant style layout
+
+---------------------------------------------------
+SETTINGS PAGE IMPLEMENTATION
+---------------------------------------------------
+
+Create a fully functional Settings page.
+
+Add:
+- Profile settings
+- User avatar upload
+- Daily calorie goal setting
+- Macro target settings
+- Dark/light mode toggle
+- Notification preferences
+- Account management
+- Logout button
+- Delete account option
+- Export nutrition history
+
+Optional:
+- AI dietary preferences
+- Allergies selection
+- Fitness goal selection
+- Water intake target
+
+---------------------------------------------------
+ROUTING & NAVIGATION FIXES
+---------------------------------------------------
+
+Fix all sidebar navigation:
+- Scanner route
+- History route
+- Analytics route
+- AI Insights route
+- Settings route
+
+Requirements:
+- Active route highlighting
+- Smooth page transitions
+- Prevent broken pages
+- Ensure responsive navigation
+
+---------------------------------------------------
+DATABASE FIXES
+---------------------------------------------------
+
+Check and fix:
+- Scan history schema
+- Image storage schema
+- User data relations
+- Nutrition history saving
+- AI insights storage
+
+Ensure:
+- Every scan saves successfully
+- Images persist after refresh
+- History loads correctly
+- Analytics fetches real data
+
+---------------------------------------------------
+ERROR HANDLING
+---------------------------------------------------
+
+Add proper:
+- Error boundaries
+- Toast notifications
+- Loading states
+- Retry mechanisms
+- Empty state UI
+- Skeleton loaders
+
+---------------------------------------------------
+UI ENHANCEMENTS
+---------------------------------------------------
+
+Maintain current futuristic dark AI theme.
+
+Improve:
+- Card spacing
+- Typography
+- Image containers
+- Glow effects
+- Hover animations
+- Responsiveness
+
+---------------------------------------------------
+FINAL REQUIREMENTS
+---------------------------------------------------
+
+After fixing:
+- All pages must work
+- All navigation must work
+- Uploaded images must display everywhere
+- Charts must render correctly
+- Database operations must persist
+- UI must remain premium and futuristic
+- No placeholder or broken sections should remain
+
+Test the complete user flow:
+Upload → Analyze → Save → History → Analytics → AI Insights → Settings

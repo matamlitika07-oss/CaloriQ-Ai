@@ -21,9 +21,9 @@ export function Layout({ children }: { children: ReactNode }) {
   const navItems = [
     { icon: Scan, label: "Scanner", href: "/" },
     { icon: History, label: "History", href: "/history" },
-    { icon: BarChart3, label: "Analytics", href: "#" },
-    { icon: Brain, label: "AI Insights", href: "#" },
-    { icon: Settings, label: "Settings", href: "#" }
+    { icon: BarChart3, label: "Analytics", href: "/analytics" },
+    { icon: Brain, label: "AI Insights", href: "/ai-insights" },
+    { icon: Settings, label: "Settings", href: "/settings" }
   ];
 
   return (

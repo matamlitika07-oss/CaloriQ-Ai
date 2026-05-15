@@ -5,6 +5,9 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import History from "@/pages/history";
+import Analytics from "@/pages/analytics";
+import AiInsights from "@/pages/ai-insights";
+import SettingsPage from "@/pages/settings";
 import { Layout } from "@/components/layout";
 import { useEffect } from "react";
 
@@ -16,6 +19,9 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/history" component={History} />
+        <Route path="/analytics" component={Analytics} />
+        <Route path="/ai-insights" component={AiInsights} />
+        <Route path="/settings" component={SettingsPage} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

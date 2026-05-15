@@ -50,7 +50,7 @@ router.post("/nutrition/analyze", upload.single("image"), async (req, res): Prom
       dietaryFlags: analysis.dietaryFlags,
       ingredients: analysis.ingredients,
       recommendations: analysis.recommendations,
-      imageUrl: null,
+      imageUrl: `data:${mimeType};base64,${imageBase64}`,
     })
     .returning();
 
