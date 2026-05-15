@@ -19,7 +19,7 @@ export function Layout({ children }: { children: ReactNode }) {
   const calPct = Math.min(100, Math.max(0, (totals.calories / DAILY_CALORIE_GOAL) * 100));
 
   const navItems = [
-    { icon: Scan, label: "Scanner", href: "/" },
+    { icon: Scan, label: "Scanner", href: "/scanner" },
     { icon: History, label: "History", href: "/history" },
     { icon: BarChart3, label: "Analytics", href: "/analytics" },
     { icon: Brain, label: "AI Insights", href: "/ai-insights" },

@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
+import Landing from "@/pages/landing";
 import Home from "@/pages/home";
 import History from "@/pages/history";
 import Analytics from "@/pages/analytics";
@@ -15,16 +16,35 @@ const queryClient = new QueryClient();
 
 function Router() {
   return (
-    <Layout>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/history" component={History} />
-        <Route path="/analytics" component={Analytics} />
-        <Route path="/ai-insights" component={AiInsights} />
-        <Route path="/settings" component={SettingsPage} />
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
+    <Switch>
+      <Route path="/" component={Landing} />
+      <Route path="/scanner">
+        <Layout>
+          <Home />
+        </Layout>
+      </Route>
+      <Route path="/history">
+        <Layout>
+          <History />
+        </Layout>
+      </Route>
+      <Route path="/analytics">
+        <Layout>
+          <Analytics />
+        </Layout>
+      </Route>
+      <Route path="/ai-insights">
+        <Layout>
+          <AiInsights />
+        </Layout>
+      </Route>
+      <Route path="/settings">
+        <Layout>
+          <SettingsPage />
+        </Layout>
+      </Route>
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 

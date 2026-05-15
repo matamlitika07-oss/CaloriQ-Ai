@@ -1,0 +1,194 @@
+Create a completely redesigned futuristic landing page / entry screen for NutriScan AI inspired by premium AI interfaces like the reference image provided (brainstorm futuristic UI). 
+
+IMPORTANT:
+Use my uploaded NutriScan AI logo as the central branding element throughout the landing page.
+
+DESIGN GOAL:
+The landing page should feel:
+- Futuristic
+- AI-powered
+- Premium
+- Healthcare + Nutrition themed
+- Cinematic
+- Interactive
+- Modern startup quality
+
+---------------------------------------------------
+MAIN VISUAL STYLE
+---------------------------------------------------
+
+Theme:
+- Dark futuristic gradient background
+- Neon green + cyan + blue glow aesthetics
+- Floating particles
+- Animated glowing orbs
+- Soft light beams
+- Space/AI laboratory atmosphere
+- Glassmorphism cards
+- Premium motion graphics
+
+Color Palette:
+- Deep navy: #020617
+- Emerald green: #22c55e
+- Neon cyan: #06b6d4
+- Electric blue glow
+- Soft gradient overlays
+
+---------------------------------------------------
+HERO SECTION (MAIN SCREEN)
+---------------------------------------------------
+
+Create a split futuristic hero layout similar to the reference image.
+
+LEFT SIDE:
+- Large floating animated NutriScan AI logo
+- Logo should glow softly
+- Add rotating circular AI rings/orbits around logo
+- Floating nutrition particles
+- Holographic platform beneath logo
+- Subtle floating animation
+
+BACKGROUND EFFECTS:
+- Animated stars/particles
+- Glowing vertical light beams
+- Moving gradients
+- Dynamic lighting
+- AI energy effects
+
+RIGHT SIDE CONTENT:
+Large heading:
+“NUTRISCAN AI”
+
+Subtitle:
+“AI-Powered Smart Nutrition Analysis & Health Intelligence Platform”
+
+Description:
+“Upload food images and instantly receive AI-generated calorie estimation, nutritional breakdown, health scoring, dietary insights, and personalized recommendations powered by advanced computer vision and artificial intelligence.”
+
+Buttons:
+1. Get Started
+2. Explore Features
+
+Buttons should:
+- Glow on hover
+- Have smooth animations
+- Neon gradients
+- Ripple effects
+
+---------------------------------------------------
+ANIMATIONS
+---------------------------------------------------
+
+Use Framer Motion extensively:
+- Floating logo animation
+- Particle movement
+- Smooth fade-ins
+- Slide transitions
+- Glow pulsing
+- Orbit ring animations
+- Hover scaling
+- Button microinteractions
+
+---------------------------------------------------
+FEATURE PREVIEW SECTION
+---------------------------------------------------
+
+Below hero section add futuristic cards for:
+- Food Recognition
+- Calorie Estimation
+- Macronutrient Analysis
+- AI Health Insights
+- Smart Recommendations
+- Nutrition Analytics
+
+Cards should:
+- Glassmorphism style
+- Glow borders
+- Hover animations
+- Floating effect
+- Neon icons
+
+---------------------------------------------------
+LIVE PREVIEW MOCKUP
+---------------------------------------------------
+
+Add a futuristic floating dashboard preview section:
+- Show scanner UI mockup
+- Health score ring
+- Nutrition charts
+- AI insights panel
+- Upload interface
+- Analytics preview
+
+Make it look like a real AI SaaS product.
+
+---------------------------------------------------
+BACKGROUND EFFECTS
+---------------------------------------------------
+
+Add:
+- Animated particles
+- Soft starfield
+- Glow blobs
+- Floating nutrition icons
+- AI neural network lines
+- Dynamic gradients
+- Holographic overlays
+
+---------------------------------------------------
+TYPOGRAPHY
+---------------------------------------------------
+
+Use:
+- Inter or Poppins font
+- Large bold futuristic headings
+- Premium spacing
+- Strong visual hierarchy
+
+---------------------------------------------------
+RESPONSIVENESS
+---------------------------------------------------
+
+Landing page must be:
+- Fully responsive
+- Mobile optimized
+- Tablet friendly
+- Smooth on all screens
+
+---------------------------------------------------
+TECH STACK
+---------------------------------------------------
+
+Use:
+- React
+- Tailwind CSS
+- Framer Motion
+- Lucide React icons
+- Modern reusable components
+
+---------------------------------------------------
+EXTRA PREMIUM FEATURES
+---------------------------------------------------
+
+Add:
+- Animated loading transitions
+- Smooth scroll animations
+- Mouse glow interaction
+- Interactive hover lighting
+- Dynamic navbar
+- Floating CTA button
+- Footer with futuristic styling
+
+---------------------------------------------------
+IMPORTANT
+---------------------------------------------------
+
+DO NOT create a basic landing page.
+
+The final result should look:
+- Cinematic
+- Futuristic
+- Like a billion-dollar AI startup
+- Similar visual quality to the provided futuristic brainstorm reference image
+
+The NutriScan AI logo should remain the core branding element and feel integrated naturally into the futuristic AI ecosystem.
