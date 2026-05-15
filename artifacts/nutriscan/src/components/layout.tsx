@@ -137,26 +137,83 @@ export function Layout({ children }: { children: ReactNode }) {
         </div>
       </nav>
       
-      <main className="flex-1 overflow-auto bg-mesh relative">
-        {/* Floating ambient orbs — purely decorative, non-interactive */}
+      <main className="flex-1 overflow-auto relative" style={{ backgroundColor: '#01080c' }}>
+
+        {/* Layer 1: Realistic blurred food photography */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1920&q=70&auto=format&fit=crop)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'local',
+            filter: 'blur(10px) brightness(0.35) saturate(0.7)',
+            transform: 'scale(1.06)',
+          }}
+        />
+
+        {/* Layer 2: Dark cinematic overlay */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: 'rgba(1, 8, 12, 0.68)' }}
+        />
+
+        {/* Layer 3: Green + cyan ambient glow */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 18% 28%, rgba(0,255,140,0.10) 0%, transparent 32%),
+              radial-gradient(circle at 82% 18%, rgba(0,200,255,0.07) 0%, transparent 26%),
+              radial-gradient(circle at 52% 82%, rgba(50,255,120,0.06) 0%, transparent 36%),
+              radial-gradient(circle at 75% 65%, rgba(0,200,255,0.05) 0%, transparent 28%)
+            `
+          }}
+        />
+
+        {/* Layer 4: Cinematic vignette */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: 'radial-gradient(ellipse 90% 80% at 50% 50%, transparent 45%, rgba(0,0,0,0.55) 100%)' }}
+        />
+
+        {/* Layer 5: Floating nutrition particles / ambient orbs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div
-            className="absolute top-[12%] left-[18%] w-[480px] h-[480px] rounded-full blur-[140px] opacity-60"
-            style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%)', animation: 'float-orb 14s ease-in-out infinite' }}
+            className="absolute top-[10%] left-[15%] w-[500px] h-[500px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%)',
+              filter: 'blur(60px)',
+              animation: 'float-orb 16s ease-in-out infinite',
+            }}
           />
           <div
-            className="absolute bottom-[20%] right-[12%] w-[400px] h-[400px] rounded-full blur-[120px] opacity-50"
-            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)', animation: 'float-orb 18s ease-in-out infinite 4s' }}
+            className="absolute bottom-[15%] right-[10%] w-[420px] h-[420px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 70%)',
+              filter: 'blur(50px)',
+              animation: 'float-orb 20s ease-in-out infinite 5s',
+            }}
           />
           <div
-            className="absolute top-[55%] left-[50%] w-[320px] h-[320px] rounded-full blur-[100px] opacity-40"
-            style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.05) 0%, transparent 70%)', animation: 'float-orb 22s ease-in-out infinite 8s' }}
+            className="absolute top-[50%] left-[48%] w-[340px] h-[340px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%)',
+              filter: 'blur(45px)',
+              animation: 'float-orb 24s ease-in-out infinite 10s',
+            }}
           />
           <div
-            className="absolute top-[5%] right-[30%] w-[260px] h-[260px] rounded-full blur-[100px] opacity-30"
-            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%)', animation: 'float-orb 16s ease-in-out infinite 2s' }}
+            className="absolute top-[3%] right-[28%] w-[280px] h-[280px] rounded-full"
+            style={{
+              background: 'radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)',
+              filter: 'blur(40px)',
+              animation: 'float-orb 18s ease-in-out infinite 2s',
+            }}
           />
         </div>
+
+        {/* Content */}
         <div className="p-6 md:p-10 max-w-6xl mx-auto h-full relative z-10">
           {children}
         </div>

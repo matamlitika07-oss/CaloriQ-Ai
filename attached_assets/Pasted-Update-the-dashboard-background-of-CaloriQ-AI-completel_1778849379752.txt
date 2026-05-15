@@ -1,0 +1,141 @@
+Update the dashboard background of CaloriQ AI completely.
+The current background looks too plain, empty, dark, and unrelated to food or nutrition.
+I want a PREMIUM FOOD-THEMED AI INTERFACE with realistic visuals, cinematic depth, soft transparency, and elegant glassmorphism — similar to high-end health-tech websites.
+
+IMPORTANT:
+Do NOT redesign the layout.
+Do NOT break functionality, uploads, APIs, routes, authentication, or responsiveness.
+Only improve the VISUAL BACKGROUND + ATMOSPHERE.
+
+REMOVE:
+
+* plain dark empty background
+* flat gradients
+* boring black space
+* generic neon tech appearance
+
+NEW DESIGN GOAL:
+Create a classy luxury food-tech environment that visually feels connected to:
+
+* nutrition
+* healthy food
+* vitamins
+* calories
+* wellness
+* AI-powered diet analysis
+
+BACKGROUND STYLE:
+Use a REALISTIC blurred food background with transparency overlay.
+
+Add:
+
+* softly blurred healthy food photography
+* cinematic dark overlay
+* transparent green glow
+* subtle nutrition-inspired ambience
+* realistic depth
+* premium glass effect
+
+REFERENCE STYLE:
+Like premium food AI landing pages with:
+
+* blurred salad bowls
+* floating vegetables
+* herbs
+* avocado
+* broccoli
+* berries
+* nutrition particles
+* dark green cinematic lighting
+
+BACKGROUND IMPLEMENTATION:
+Create layered backgrounds using:
+
+1. Realistic food image background
+
+* healthy bowl / salad / vegetables
+* heavily blurred
+* low opacity
+* cover full screen
+
+2. Dark overlay
+
+```css id="a1"
+background: rgba(1, 8, 12, 0.72);
+backdrop-filter: blur(4px);
+```
+
+3. Green ambient glow
+
+```css id="a2"
+background:
+radial-gradient(circle at 20% 30%, rgba(0,255,140,0.12), transparent 30%),
+radial-gradient(circle at 80% 20%, rgba(0,200,255,0.08), transparent 25%),
+radial-gradient(circle at 50% 80%, rgba(50,255,120,0.06), transparent 35%);
+```
+
+ADD THESE EFFECTS:
+
+* floating blurred nutrition particles
+* soft glow behind cards
+* cinematic vignette
+* subtle animated gradients
+* transparent shadows
+* smooth glass panels
+
+SCANNER PAGE:
+Behind the upload area:
+
+* add soft spotlight glow
+* blurred food image
+* transparent holographic scan effect
+* subtle animated pulse
+
+RIGHT ANALYSIS PANEL:
+Make it feel alive:
+
+* glowing nutrition aura
+* subtle floating particles
+* soft gradient movement
+* transparent layered effects
+
+SIDEBAR:
+Make sidebar:
+
+* semi-transparent glass
+* dark emerald gradient
+* soft neon border glow
+* premium shadow depth
+
+CARDS:
+Use:
+
+```css id="a3"
+background: rgba(10, 18, 24, 0.45);
+backdrop-filter: blur(18px);
+border: 1px solid rgba(0,255,140,0.12);
+box-shadow:
+0 10px 40px rgba(0,0,0,0.35),
+0 0 30px rgba(0,255,140,0.06);
+```
+
+VERY IMPORTANT:
+The UI should feel:
+
+* food-related
+* premium
+* classy
+* modern
+* luxurious
+* realistic
+* immersive
+
+NOT:
+
+* generic hacker UI
+* plain neon gradients
+* empty dark background
+* random cyberpunk look
+
+FINAL RESULT:
+The inside dashboard should feel like a premium AI nutrition operating system with realistic food ambience, cinematic transparency, glassmorphism, and elegant healthy-food aesthetics.
