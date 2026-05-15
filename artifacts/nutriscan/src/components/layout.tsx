@@ -32,7 +32,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent glow-green" />
         
         <div className="p-6 flex items-center justify-between md:block">
-          <div className="flex items-center gap-3 font-bold text-xl tracking-tight text-gradient">
+          <Link href="/" className="flex items-center gap-3 font-bold text-xl tracking-tight text-gradient cursor-pointer hover:opacity-80 transition-opacity duration-200">
             <motion.div 
               animate={{ 
                 scale: [1, 1.1, 1],
@@ -43,7 +43,7 @@ export function Layout({ children }: { children: ReactNode }) {
               <Zap className="w-6 h-6 text-primary drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
             </motion.div>
             CaloriQ <span className="text-primary drop-shadow-[0_0_6px_rgba(34,197,94,0.8)]">AI</span>
-          </div>
+          </Link>
           <button 
             className="md:hidden p-2 rounded-md hover:bg-muted"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
