@@ -16,7 +16,7 @@ export default function SettingsPage() {
   const { data: history = [] } = useGetScanHistory({ query: { queryKey: getGetScanHistoryQueryKey() } });
 
   // State
-  const [displayName, setDisplayName] = useState("NutriScan User");
+  const [displayName, setDisplayName] = useState("CaloriQ User");
   const [calorieGoal, setCalorieGoal] = useState(2000);
   const [macros, setMacros] = useState({ protein: 150, carbs: 250, fat: 65 });
   const [prefs, setPrefs] = useState({ allergies: [] as string[], fitnessGoal: "Maintenance", dietType: "Omnivore" });
@@ -314,7 +314,7 @@ export default function SettingsPage() {
       {/* Section 5: About */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="flex flex-col items-center justify-center text-center gap-4 py-8 opacity-80">
         <div className="text-2xl font-black tracking-tight flex items-center gap-2">
-          <Zap className="w-5 h-5 text-primary" /> NutriScan AI <span className="text-sm font-medium text-muted-foreground bg-card px-2 py-0.5 rounded-md border border-border">v1.0</span>
+          <Zap className="w-5 h-5 text-primary" /> CaloriQ <span className="text-primary drop-shadow-[0_0_6px_rgba(34,197,94,0.8)]">AI</span> <span className="text-sm font-medium text-muted-foreground bg-card px-2 py-0.5 rounded-md border border-border">v1.0</span>
         </div>
         <div className="flex items-center gap-2 text-sm font-bold text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">
           <Shield className="w-4 h-4" /> Powered by Claude AI

@@ -258,7 +258,7 @@ export default function Landing() {
               <LogoEmblem className="w-9 h-9" style={{ filter: "drop-shadow(0 0 8px rgba(57,255,136,0.7))" }} />
               <div className="absolute inset-0 bg-[#39FF88]/20 rounded-full blur-md -z-10" />
             </div>
-            <span className="font-black text-xl tracking-tight text-white">NutriScan <span style={{ color: "#39FF88" }}>AI</span></span>
+            <span className="font-black text-xl tracking-tight text-white">CaloriQ <span style={{ color: "#39FF88" }}>AI</span></span>
           </div>
 
           <div className="hidden lg:flex items-center gap-6">
@@ -648,7 +648,7 @@ export default function Landing() {
               <div className="w-56 border-r border-white/8 p-5 hidden md:flex flex-col" style={{ background: "rgba(255,255,255,0.015)" }}>
                 <div className="flex items-center gap-2 mb-8">
                   <LogoEmblem className="w-6 h-6" />
-                  <span className="font-bold text-sm">NutriScan AI</span>
+                  <span className="font-bold text-sm">CaloriQ <span style={{ color: "#39FF88" }}>AI</span></span>
                 </div>
                 <div className="flex flex-col gap-1.5 flex-1">
                   <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" style={{ background: "rgba(57,255,136,0.12)", color: "#39FF88", border: "1px solid rgba(57,255,136,0.2)" }}>
@@ -952,7 +952,7 @@ export default function Landing() {
             <div className="md:col-span-1">
               <div className="flex items-center gap-2 mb-4 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
                 <LogoEmblem className="w-7 h-7" style={{ filter: "drop-shadow(0 0 6px rgba(57,255,136,0.6))" }} />
-                <span className="font-black text-lg text-white">NutriScan <span style={{ color: "#39FF88" }}>AI</span></span>
+                <span className="font-black text-lg text-white">CaloriQ <span style={{ color: "#39FF88" }}>AI</span></span>
               </div>
               <p className="text-sm text-white/40 leading-relaxed mb-5">AI-powered nutrition intelligence for smarter, healthier eating decisions.</p>
               <div className="flex items-center gap-3">
@@ -1014,7 +1014,7 @@ export default function Landing() {
           </div>
 
           <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/8 gap-4">
-            <p className="text-xs text-white/25">© 2025 NutriScan AI · Powered by Anthropic Claude · All rights reserved</p>
+            <p className="text-xs text-white/25">© 2025 CaloriQ AI · Powered by Anthropic Claude · All rights reserved</p>
             <div className="flex gap-6">
               <a href="#" className="text-xs text-white/25 hover:text-[#39FF88] transition-colors">Privacy Policy</a>
               <a href="#" className="text-xs text-white/25 hover:text-[#39FF88] transition-colors">Terms of Service</a>

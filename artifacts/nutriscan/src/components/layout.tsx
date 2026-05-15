@@ -42,7 +42,7 @@ export function Layout({ children }: { children: ReactNode }) {
             >
               <Zap className="w-6 h-6 text-primary drop-shadow-[0_0_8px_rgba(34,197,94,0.8)]" />
             </motion.div>
-            NutriScan AI
+            CaloriQ <span className="text-primary drop-shadow-[0_0_6px_rgba(34,197,94,0.8)]">AI</span>
           </div>
           <button 
             className="md:hidden p-2 rounded-md hover:bg-muted"
