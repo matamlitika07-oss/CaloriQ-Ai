@@ -57,135 +57,6 @@ const ParticleField = () => {
   );
 };
 
-const FloatingFoodEmoji = ({ emoji, style }: { emoji: string; style: CSSProperties }) => (
-  <motion.div
-    className="absolute text-4xl pointer-events-none select-none"
-    style={style}
-    animate={{ y: [-12, 12, -12], rotate: [-5, 5, -5] }}
-    transition={{ duration: 5 + Math.random() * 3, repeat: Infinity, ease: "easeInOut" }}
-  >
-    {emoji}
-  </motion.div>
-);
-
-const NutritionCard = () => (
-  <motion.div
-    initial={{ opacity: 0, x: 40, y: -20 }}
-    animate={{ opacity: 1, x: 0, y: 0 }}
-    transition={{ delay: 0.8, duration: 0.6 }}
-    className="absolute -right-4 top-8 bg-black/70 backdrop-blur-xl border border-[#39FF88]/30 rounded-2xl p-4 shadow-[0_0_30px_rgba(57,255,136,0.15)] w-52"
-  >
-    <div className="text-xs text-[#39FF88] font-bold uppercase tracking-wider mb-3">Nutrition Analysis</div>
-    <div className="space-y-2">
-      {[
-        { label: "Calories", value: "620 kcal", color: "#39FF88" },
-        { label: "Protein", value: "28g", color: "#06b6d4" },
-        { label: "Carbs", value: "45g", color: "#f97316" },
-        { label: "Fats", value: "22g", color: "#a855f7" },
-      ].map(n => (
-        <div key={n.label} className="flex justify-between items-center">
-          <span className="text-xs text-white/60">{n.label}</span>
-          <span className="text-xs font-bold" style={{ color: n.color }}>{n.value}</span>
-        </div>
-      ))}
-    </div>
-    <div className="mt-3 pt-3 border-t border-white/10">
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-white/60">Health Score</span>
-        <span className="text-sm font-black text-[#39FF88]">92/100</span>
-      </div>
-      <div className="h-1.5 bg-white/10 rounded-full mt-1.5 overflow-hidden">
-        <motion.div
-          className="h-full rounded-full bg-gradient-to-r from-[#39FF88] to-[#06b6d4]"
-          initial={{ width: 0 }}
-          animate={{ width: "92%" }}
-          transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
-        />
-      </div>
-    </div>
-  </motion.div>
-);
-
-const HealthScoreCard = () => (
-  <motion.div
-    initial={{ opacity: 0, x: -30, y: 20 }}
-    animate={{ opacity: 1, x: 0, y: 0 }}
-    transition={{ delay: 1.0, duration: 0.6 }}
-    className="absolute -left-4 bottom-16 bg-black/70 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-4 shadow-[0_0_25px_rgba(6,182,212,0.15)] w-44"
-  >
-    <div className="flex items-center gap-2 mb-2">
-      <div className="w-2 h-2 rounded-full bg-[#39FF88] animate-pulse" />
-      <span className="text-xs text-white/70 font-medium">AI Scanning...</span>
-    </div>
-    <div className="text-2xl font-black text-[#39FF88] mb-1">98.2%</div>
-    <div className="text-xs text-white/50">Recognition Accuracy</div>
-  </motion.div>
-);
-
-const FoodBowlIllustration = () => (
-  <div className="relative w-full h-full flex items-center justify-center">
-    {/* Holographic scanner glow */}
-    <motion.div
-      animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.7, 0.3] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute w-72 h-20 bg-[#39FF88]/20 rounded-full blur-2xl bottom-10"
-    />
-    <motion.div
-      animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.5, 0.2] }}
-      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-      className="absolute w-56 h-16 bg-cyan-500/15 rounded-full blur-xl bottom-10"
-    />
-
-    {/* Scanner ring */}
-    <motion.div
-      animate={{ opacity: [0.4, 1, 0.4], scale: [0.95, 1.05, 0.95] }}
-      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute w-64 h-64 rounded-full border-2 border-dashed border-[#39FF88]/40"
-      style={{ boxShadow: "0 0 30px rgba(57,255,136,0.1), inset 0 0 30px rgba(57,255,136,0.05)" }}
-    />
-    <motion.div
-      animate={{ rotate: 360 }}
-      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-      className="absolute w-64 h-64 rounded-full border border-[#39FF88]/20"
-    >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#39FF88] shadow-[0_0_10px_rgba(57,255,136,0.8)]" />
-    </motion.div>
-
-    {/* Bowl */}
-    <motion.div
-      animate={{ y: [-8, 8, -8] }}
-      transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
-      className="relative z-10 text-center"
-    >
-      <div className="text-9xl drop-shadow-[0_0_30px_rgba(57,255,136,0.6)] select-none">🥗</div>
-
-      {/* Floating ingredients */}
-      <motion.div className="absolute -top-6 -left-8 text-3xl" animate={{ y: [-5,5,-5], rotate: [-10,10,-10] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>🥑</motion.div>
-      <motion.div className="absolute -top-4 -right-6 text-2xl" animate={{ y: [-6,6,-6], rotate: [10,-10,10] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}>🍅</motion.div>
-      <motion.div className="absolute top-4 -right-10 text-2xl" animate={{ y: [-4,4,-4], rotate: [-8,8,-8] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}>🥦</motion.div>
-      <motion.div className="absolute top-8 -left-10 text-2xl" animate={{ y: [-7,7,-7], rotate: [5,-5,5] }} transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}>🫐</motion.div>
-      <motion.div className="absolute -bottom-2 -right-8 text-xl" animate={{ y: [-4,4,-4] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}>🍋</motion.div>
-    </motion.div>
-
-    {/* Vitamin badges */}
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.4 }}
-      className="absolute top-4 left-0 bg-black/60 backdrop-blur border border-purple-500/30 rounded-full px-3 py-1 text-xs font-bold text-purple-400"
-    >
-      Vit C: 88%
-    </motion.div>
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 1.6 }}
-      className="absolute bottom-8 right-0 bg-black/60 backdrop-blur border border-orange-500/30 rounded-full px-3 py-1 text-xs font-bold text-orange-400"
-    >
-      Iron: 42%
-    </motion.div>
-  </div>
-);
 
 export default function Landing() {
   const [, navigate] = useLocation();
@@ -323,117 +194,292 @@ export default function Landing() {
         </AnimatePresence>
       </motion.nav>
 
-      {/* ── HERO SECTION ── */}
-      <section ref={heroRef} className="relative min-h-[100dvh] pt-20 flex items-center overflow-hidden">
+      {/* ── HERO SECTION — CINEMATIC FOOD PHOTOGRAPHY ── */}
+      <section ref={heroRef} className="relative min-h-[100dvh] flex items-center overflow-hidden">
+
+        {/* === FULL-SCREEN REALISTIC FOOD PHOTOGRAPHY === */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=1920&q=85&auto=format&fit=crop"
+            alt=""
+            className="w-full h-full object-cover object-center"
+            style={{ filter: "brightness(0.7) saturate(1.15)" }}
+          />
+          {/* Layered cinematic overlays */}
+          <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.58) 45%, rgba(0,0,0,0.25) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.3) 40%, transparent 70%)" }} />
+          {/* Green ambient glow overlay */}
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 15% 55%, rgba(57,255,136,0.09) 0%, transparent 55%)" }} />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 50% 70% at 85% 25%, rgba(6,182,212,0.06) 0%, transparent 55%)" }} />
+          {/* Vignette */}
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 120% 100% at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%)" }} />
+        </div>
+
+        {/* Particles float above the photo */}
         <ParticleField />
 
-        {/* Background orbs */}
-        <div className="absolute top-[-5%] left-[-5%] w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, rgba(57,255,136,0.08) 0%, transparent 70%)" }} />
-        <div className="absolute top-[10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 70%)" }} />
-        <div className="absolute bottom-[-10%] left-[30%] w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, rgba(57,255,136,0.06) 0%, transparent 70%)" }} />
+        {/* Subtle grid overlay */}
+        <div className="absolute inset-0 z-[1] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(57,255,136,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,136,0.025) 1px, transparent 1px)", backgroundSize: "4rem 4rem", maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, #000 20%, transparent 100%)" }} />
 
-        {/* Grid overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(57,255,136,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(57,255,136,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
-
-        {/* Vertical light beams */}
-        <div className="absolute top-0 left-[30%] w-px h-full bg-gradient-to-b from-[#39FF88]/0 via-[#39FF88]/15 to-[#39FF88]/0 pointer-events-none" />
-        <div className="absolute top-0 left-[70%] w-px h-full bg-gradient-to-b from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 pointer-events-none" />
-
-        {/* Mouse glow */}
-        <div
-          ref={mouseGlowRef}
-          className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none opacity-40 transition-opacity duration-300"
-          style={{ background: "radial-gradient(circle at center, rgba(57,255,136,0.1) 0%, transparent 70%)", willChange: "transform" }}
+        {/* Animated scan line sweeping across */}
+        <motion.div
+          animate={{ y: ["-100%", "200%"] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "linear", repeatDelay: 4 }}
+          className="absolute left-0 right-0 h-[2px] z-[2] pointer-events-none"
+          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(57,255,136,0.4) 30%, rgba(57,255,136,0.8) 50%, rgba(57,255,136,0.4) 70%, transparent 100%)", boxShadow: "0 0 20px rgba(57,255,136,0.4)" }}
         />
 
-        {/* Floating background food */}
-        <FloatingFoodEmoji emoji="🥑" style={{ top: "15%", left: "5%", opacity: 0.08, fontSize: "5rem" }} />
-        <FloatingFoodEmoji emoji="🍊" style={{ top: "60%", left: "2%", opacity: 0.07, fontSize: "4rem" }} />
-        <FloatingFoodEmoji emoji="🥦" style={{ top: "20%", right: "3%", opacity: 0.07, fontSize: "4.5rem" }} />
-        <FloatingFoodEmoji emoji="🍇" style={{ bottom: "15%", right: "5%", opacity: 0.07, fontSize: "4rem" }} />
+        {/* Mouse interactive glow */}
+        <div
+          ref={mouseGlowRef}
+          className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none z-[2] opacity-25"
+          style={{ background: "radial-gradient(circle at center, rgba(57,255,136,0.15) 0%, transparent 65%)", willChange: "transform" }}
+        />
 
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 py-24 lg:py-0">
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-10 xl:gap-16 items-center z-10 pt-36 pb-24 lg:pt-28 lg:pb-16">
 
-          {/* LEFT: Text content */}
+          {/* LEFT: Content floating above photo */}
           <div className="flex flex-col items-start text-left order-1">
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6"
-              style={{ borderColor: "rgba(57,255,136,0.3)", background: "rgba(57,255,136,0.08)", color: "#39FF88" }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-7"
+              style={{ borderColor: "rgba(57,255,136,0.4)", background: "rgba(0,0,0,0.5)", backdropFilter: "blur(16px)", color: "#39FF88" }}
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span className="text-xs font-semibold uppercase tracking-widest">AI-Powered Nutrition Intelligence</span>
             </motion.div>
 
-            <h1 className="font-black tracking-tight leading-[0.92] mb-6" style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}>
-              <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="block text-white">Scan.</motion.span>
-              <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="block text-white">Analyze.</motion.span>
+            <h1 className="font-black tracking-tight leading-[0.9] mb-7" style={{ fontSize: "clamp(3.2rem, 7vw, 6rem)" }}>
               <motion.span
-                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
+                initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1 }}
+                className="block text-white"
+                style={{ textShadow: "0 2px 30px rgba(0,0,0,0.9), 0 0 80px rgba(0,0,0,0.5)" }}
+              >Scan.</motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.2 }}
+                className="block text-white"
+                style={{ textShadow: "0 2px 30px rgba(0,0,0,0.9)" }}
+              >Analyze.</motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.3 }}
                 className="block"
-                style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-              >
-                Eat Smarter.
-              </motion.span>
+                style={{ background: "linear-gradient(90deg, #39FF88 0%, #06b6d4 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 0 25px rgba(57,255,136,0.5))" }}
+              >Eat Smarter.</motion.span>
             </h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-base text-white/55 max-w-lg mb-8 leading-relaxed"
+              className="text-base max-w-lg mb-8 leading-relaxed"
+              style={{ color: "rgba(255,255,255,0.72)", textShadow: "0 1px 20px rgba(0,0,0,0.9)" }}
             >
               AI-powered nutrition analysis with calorie tracking, vitamin breakdown, health scoring, and personalized dietary recommendations. Simply snap a photo of your meal.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.52 }}
+              className="flex flex-col sm:flex-row gap-4 mb-10 w-full sm:w-auto"
             >
               <button
                 onClick={() => navigate("/scanner")}
                 className="flex items-center justify-center gap-2 rounded-full px-8 py-4 font-bold text-base transition-all hover:scale-105 group"
-                style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617", boxShadow: "0 0 25px rgba(57,255,136,0.35)" }}
+                style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617", boxShadow: "0 0 35px rgba(57,255,136,0.5), 0 6px 30px rgba(0,0,0,0.5)" }}
               >
                 <Camera className="w-5 h-5" /> Start Scanning
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-white/80 hover:text-white transition-all"
-                style={{ border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(12px)" }}
+                className="flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-white transition-all hover:bg-white/10"
+                style={{ border: "1px solid rgba(255,255,255,0.22)", background: "rgba(0,0,0,0.45)", backdropFilter: "blur(20px)" }}
               >
                 Explore Features
               </button>
             </motion.div>
 
-            {/* Trusted users */}
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.65 }}
               className="flex items-center gap-4"
             >
               <div className="flex -space-x-2">
                 {["🧑‍💻", "👩‍⚕️", "🏃", "👨‍🍳"].map((emoji, i) => (
-                  <div key={i} className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-sm" style={{ borderColor: "#39FF88", background: "rgba(57,255,136,0.1)" }}>{emoji}</div>
+                  <div key={i} className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-sm" style={{ borderColor: "#39FF88", background: "rgba(0,0,0,0.55)", backdropFilter: "blur(8px)" }}>{emoji}</div>
                 ))}
               </div>
               <div>
                 <div className="flex items-center gap-1 mb-0.5">
                   {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-[#39FF88] text-[#39FF88]" />)}
                 </div>
-                <p className="text-xs text-white/50"><span className="text-white font-bold">10,000+</span> meals analyzed</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.55)", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}>
+                  <span className="text-white font-bold">10,000+</span> meals analyzed
+                </p>
               </div>
             </motion.div>
           </div>
 
-          {/* RIGHT: Food bowl with floating cards */}
-          <div className="relative flex items-center justify-center order-2 lg:h-[560px]">
-            <div className="relative w-80 h-80">
-              <FoodBowlIllustration />
+          {/* RIGHT: Floating glassmorphism nutrition analytics panel */}
+          <motion.div
+            initial={{ opacity: 0, x: 50, y: 20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
+            className="order-2 relative"
+          >
+            {/* Ambient glow behind card */}
+            <div className="absolute inset-0 rounded-3xl blur-3xl scale-90 -z-10 opacity-60" style={{ background: "radial-gradient(ellipse at center, rgba(57,255,136,0.2) 0%, rgba(6,182,212,0.1) 60%, transparent 100%)" }} />
+
+            {/* Main glass card */}
+            <div
+              className="rounded-3xl p-6 relative overflow-hidden"
+              style={{
+                background: "rgba(2,8,20,0.65)",
+                backdropFilter: "blur(28px) saturate(180%)",
+                border: "1px solid rgba(57,255,136,0.18)",
+                boxShadow: "0 0 0 1px rgba(255,255,255,0.04) inset, 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(57,255,136,0.08)"
+              }}
+            >
+              {/* Inner top glow */}
+              <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(57,255,136,0.5), rgba(6,182,212,0.3), transparent)" }} />
+              <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-30" style={{ background: "rgba(57,255,136,0.15)" }} />
+
+              {/* Header row */}
+              <div className="flex items-start justify-between mb-5 relative z-10">
+                <div>
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <motion.div
+                      animate={{ opacity: [0.5, 1, 0.5], scale: [0.9, 1.1, 0.9] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="w-2 h-2 rounded-full"
+                      style={{ background: "#39FF88", boxShadow: "0 0 8px #39FF88" }}
+                    />
+                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#39FF88" }}>AI Scan Complete</span>
+                  </div>
+                  <div className="text-xl font-black text-white">Grilled Chicken Bowl</div>
+                  <div className="text-xs text-white/40 mt-0.5">Analyzed just now · 1 serving</div>
+                </div>
+                {/* Health score ring */}
+                <div className="relative w-16 h-16 shrink-0">
+                  <svg className="w-full h-full -rotate-90" viewBox="0 0 64 64">
+                    <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="5" />
+                    <motion.circle
+                      cx="32" cy="32" r="26" fill="none" stroke="#39FF88" strokeWidth="5"
+                      strokeDasharray="163"
+                      initial={{ strokeDashoffset: 163 }}
+                      animate={{ strokeDashoffset: 163 * (1 - 0.88) }}
+                      transition={{ delay: 1.2, duration: 1.4, ease: "easeOut" }}
+                      strokeLinecap="round"
+                      style={{ filter: "drop-shadow(0 0 8px rgba(57,255,136,0.9))" }}
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-base font-black text-white leading-none">88</span>
+                    <span className="text-[8px] text-white/40 leading-none mt-0.5 uppercase tracking-wide">Score</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Calorie big display */}
+              <div className="rounded-2xl p-4 mb-4 relative z-10" style={{ background: "rgba(57,255,136,0.06)", border: "1px solid rgba(57,255,136,0.14)" }}>
+                <div className="flex items-end justify-between">
+                  <div>
+                    <div className="text-[10px] text-white/45 mb-1 uppercase tracking-widest font-semibold">Total Calories</div>
+                    <div className="flex items-baseline gap-2">
+                      <motion.span
+                        initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }}
+                        className="text-4xl font-black"
+                        style={{ color: "#39FF88", textShadow: "0 0 25px rgba(57,255,136,0.6)" }}
+                      >580</motion.span>
+                      <span className="text-base text-white/35 font-light">kcal</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] text-white/40 mb-0.5 uppercase tracking-wider">Daily Goal</div>
+                    <div className="text-sm font-bold text-white/60">2,000 kcal</div>
+                    <div className="text-xs font-black mt-1" style={{ color: "#39FF88" }}>29% used</div>
+                  </div>
+                </div>
+                <div className="h-1.5 rounded-full overflow-hidden mt-3" style={{ background: "rgba(255,255,255,0.07)" }}>
+                  <motion.div
+                    className="h-full rounded-full"
+                    style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", boxShadow: "0 0 10px rgba(57,255,136,0.5)" }}
+                    initial={{ width: 0 }} animate={{ width: "29%" }}
+                    transition={{ delay: 1.4, duration: 0.9, ease: "easeOut" }}
+                  />
+                </div>
+              </div>
+
+              {/* Macros row */}
+              <div className="grid grid-cols-3 gap-2 mb-4 relative z-10">
+                {[
+                  { label: "Protein", val: "42g", color: "#06b6d4", pct: 70 },
+                  { label: "Carbs",   val: "38g", color: "#f97316", pct: 45 },
+                  { label: "Fats",    val: "18g", color: "#a855f7", pct: 35 },
+                ].map(m => (
+                  <div key={m.label} className="rounded-xl p-3 text-center" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                    <div className="text-lg font-black mb-0.5" style={{ color: m.color }}>{m.val}</div>
+                    <div className="text-[10px] text-white/40 uppercase tracking-wider mb-2">{m.label}</div>
+                    <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                      <motion.div className="h-full rounded-full" style={{ background: m.color }} initial={{ width: 0 }} animate={{ width: `${m.pct}%` }} transition={{ delay: 1.5, duration: 0.8 }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Vitamins */}
+              <div className="rounded-2xl p-4 mb-4 relative z-10" style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                <div className="text-[10px] text-white/40 font-bold uppercase tracking-widest mb-3">Vitamins & Minerals</div>
+                <div className="space-y-2.5">
+                  {[
+                    { name: "Vitamin C", val: 88, color: "#f97316" },
+                    { name: "Vitamin D", val: 52, color: "#fbbf24" },
+                    { name: "Iron",      val: 42, color: "#a855f7" },
+                    { name: "Calcium",   val: 65, color: "#06b6d4" },
+                  ].map(v => (
+                    <div key={v.name} className="flex items-center gap-3">
+                      <div className="text-xs text-white/45 w-20 shrink-0">{v.name}</div>
+                      <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
+                        <motion.div className="h-full rounded-full" style={{ background: v.color, boxShadow: `0 0 6px ${v.color}60` }} initial={{ width: 0 }} animate={{ width: `${v.val}%` }} transition={{ delay: 1.6, duration: 0.8 }} />
+                      </div>
+                      <div className="text-xs font-bold w-8 text-right shrink-0" style={{ color: v.color }}>{v.val}%</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* AI recommendation */}
+              <div className="flex items-start gap-3 rounded-xl px-4 py-3 relative z-10" style={{ background: "linear-gradient(90deg, rgba(57,255,136,0.07), rgba(6,182,212,0.04))", border: "1px solid rgba(57,255,136,0.14)" }}>
+                <Brain className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "#39FF88" }} />
+                <div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: "#39FF88" }}>AI Recommendation</div>
+                  <span className="text-xs text-white/60 leading-relaxed">Excellent protein source. Consider adding quinoa or legumes for extra fiber.</span>
+                </div>
+              </div>
             </div>
-            <NutritionCard />
-            <HealthScoreCard />
-          </div>
+
+            {/* Floating badge — top left */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 1.3, type: "spring" }}
+              className="absolute -top-5 -left-5 rounded-2xl px-3 py-2 flex items-center gap-2 text-xs font-bold"
+              style={{ background: "rgba(2,8,20,0.8)", backdropFilter: "blur(16px)", border: "1px solid rgba(250,204,21,0.35)", color: "#fbbf24", boxShadow: "0 4px 20px rgba(0,0,0,0.5)" }}
+            >
+              <Zap className="w-3.5 h-3.5" /> Instant Analysis
+            </motion.div>
+
+            {/* Floating badge — bottom right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 1.5, type: "spring" }}
+              className="absolute -bottom-5 -right-5 rounded-2xl px-3 py-2 flex items-center gap-2 text-xs font-bold"
+              style={{ background: "rgba(2,8,20,0.8)", backdropFilter: "blur(16px)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", boxShadow: "0 4px 20px rgba(0,0,0,0.5)" }}
+            >
+              <Brain className="w-3.5 h-3.5" /> Powered by Claude AI
+            </motion.div>
+          </motion.div>
+
         </div>
       </section>
 

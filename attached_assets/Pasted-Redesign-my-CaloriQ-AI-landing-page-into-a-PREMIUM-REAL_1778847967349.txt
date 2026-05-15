@@ -1,0 +1,129 @@
+Redesign my CaloriQ AI landing page into a PREMIUM REALISTIC FOOD-TECH WEBSITE.
+
+IMPORTANT:
+Do NOT create an illustrated/cartoon UI.
+Do NOT use vector food graphics.
+Do NOT use fake generated dashboard art style.
+Do NOT separate the background and UI.
+
+I want the ENTIRE hero section to feel immersive and realistic like a premium restaurant-tech advertisement mixed with futuristic health-tech UI.
+
+MAIN DESIGN REQUIREMENT:
+Use a FULL-SCREEN REALISTIC FOOD PHOTOGRAPHY BACKGROUND with DARK TRANSPARENT OVERLAY and place the website UI ON TOP of the image using glassmorphism.
+
+REFERENCE STYLE:
+The landing page should look like:
+
+* premium food delivery ads
+* luxury restaurant websites
+* Apple-style cinematic landing pages
+* futuristic nutrition startup websites
+* realistic healthy food photography with floating transparent UI
+
+HERO SECTION:
+Use a realistic ultra-HD cinematic food image:
+
+* healthy bowls
+* avocado
+* grilled chicken
+* broccoli
+* quinoa
+* salad
+* fruits
+* vitamins
+* herbs
+* nutrition ingredients
+
+The food should look:
+
+* professional food photography
+* realistic lighting
+* depth of field
+* warm highlights
+* dark moody background
+* premium restaurant quality
+
+BACKGROUND STYLE:
+
+* Fullscreen realistic image
+* Slight blur behind text
+* Dark transparent overlay
+* Green ambient glow
+* Floating particles
+* Soft cinematic lighting
+* Depth effect
+
+UI LAYOUT:
+Place all UI elements FLOATING above the background image.
+
+LEFT SIDE:
+Transparent hero content area:
+
+* Badge:
+  “AI-Powered Nutrition Intelligence”
+* Huge heading:
+  “Scan. Analyze. Eat Smarter.”
+* Subheading with modern typography
+* CTA buttons
+* Ratings/users section
+
+RIGHT SIDE:
+Floating glassmorphism nutrition analytics panel:
+
+* Calories
+* Protein
+* Carbs
+* Fat
+* Vitamins
+* Health Score circle
+* Transparent black glass effect
+* Neon green highlights
+* Blurred background
+* Glow borders
+
+VERY IMPORTANT:
+The UI should feel integrated INTO the background image — not placed separately on top of a blank section.
+
+ADD:
+
+* floating vegetables/fruits around the hero section
+* subtle animated particles
+* holographic nutrition scan effect under food bowl
+* transparent nutrition labels floating around food
+* realistic shadows
+* cinematic atmosphere
+
+COLOR PALETTE:
+
+* black
+* dark green
+* emerald
+* neon green
+* warm food tones
+
+TRANSPARENCY EFFECT:
+Use:
+
+* backdrop blur
+* rgba transparency
+* glassmorphism cards
+* semi-transparent navbar
+* floating transparent panels
+
+TYPOGRAPHY:
+
+* clean bold modern font
+* white text
+* glowing green highlights
+* premium spacing
+
+KEEP WEBSITE FUNCTIONAL:
+
+* do NOT break existing frontend
+* do NOT remove routing
+* do NOT modify backend
+* preserve responsiveness
+* preserve APIs and authentication
+
+FINAL RESULT SHOULD FEEL LIKE:
+A billion-dollar futuristic AI nutrition startup landing page with REAL FOOD PHOTOGRAPHY and TRANSPARENT MODERN UI layered beautifully over the image.
