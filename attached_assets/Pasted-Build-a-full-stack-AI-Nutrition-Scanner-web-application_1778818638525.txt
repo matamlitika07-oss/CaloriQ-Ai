@@ -1,0 +1,196 @@
+Build a full-stack AI Nutrition Scanner web application called "NutriScan AI" that analyzes food images using computer vision and returns detailed nutritional data with health recommendations.
+
+---
+
+## TECH STACK
+
+Frontend: React.js + Tailwind CSS
+Backend: Node.js + Express
+AI/ML: Anthropic Claude API (claude-sonnet-4) with vision
+Database: MongoDB (store scan history)
+File Upload: Multer (image handling)
+Deployment: Vercel (frontend) + Railway (backend)
+
+---
+
+## PROJECT STRUCTURE
+
+nutriscan-ai/
+├── client/                  # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── UploadZone.jsx
+│   │   │   ├── NutritionCard.jsx
+│   │   │   ├── MacroChart.jsx
+│   │   │   ├── HealthScore.jsx
+│   │   │   ├── Recommendations.jsx
+│   │   │   └── ScanHistory.jsx
+│   │   ├── pages/
+│   │   │   ├── Home.jsx
+│   │   │   └── History.jsx
+│   │   ├── hooks/
+│   │   │   └── useNutritionScanner.js
+│   │   └── App.jsx
+├── server/                  # Node.js backend
+│   ├── routes/
+│   │   └── nutrition.js
+│   ├── controllers/
+│   │   └── nutritionController.js
+│   ├── models/
+│   │   └── ScanResult.js
+│   ├── middleware/
+│   │   └── upload.js
+│   └── index.js
+└── README.md
+
+---
+
+## CORE FEATURES TO BUILD
+
+### 1. Image Upload System
+- Drag & drop zone with visual feedback
+- Click to browse file picker
+- Preview uploaded image before analysis
+- Validate: JPG, PNG, WEBP only, max 5MB
+- Show upload progress indicator
+
+### 2. AI Vision Analysis (Claude API)
+Send the image to Claude claude-sonnet-4 with this system prompt:
+
+"You are a certified nutritionist and food scientist with expertise in 
+ computer vision food recognition. Analyze the food image provided and 
+ return accurate nutritional data as a strict JSON object only."
+
+Request this JSON structure back:
+{
+  "foodName": "string",
+  "confidence": 0-100,
+  "servingSize": "string",
+  "calories": number,
+  "protein": "Xg",
+  "carbs": "Xg",
+  "fat": "Xg",
+  "fiber": "Xg",
+  "sugar": "Xg",
+  "sodium": "Xmg",
+  "cholesterol": "Xmg",
+  "healthScore": 0-100,
+  "healthSummary": "string",
+  "vitamins": [{ "name": "string", "amount": "string", "dailyPct": number }],
+  "minerals": [{ "name": "string", "amount": "string" }],
+  "allergens": ["string"],
+  "dietaryFlags": ["Vegan", "Gluten-Free", "Keto-Friendly", etc],
+  "ingredients": ["string"],
+  "recommendations": [{ "emoji": "string", "text": "string", "type": "positive|warning|tip" }]
+}
+
+### 3. Nutrition Dashboard UI
+Display results in a visually rich dashboard:
+- Large calorie display with daily % ring chart
+- Macro breakdown: Protein / Carbs / Fat as bar charts
+- Micronutrients table (vitamins & minerals)
+- Health Score ring (0-100, color coded green/yellow/red)
+- Dietary badges (Vegan, Keto, Gluten-Free, etc.)
+- Detected allergen warning tags
+- 4-6 personalized health recommendations
+
+### 4. Charts & Visualizations
+Use Recharts library:
+- PieChart for macro distribution
+- RadialBarChart for health score
+- BarChart for vitamin daily percentages
+- Use smooth animations on load
+
+### 5. Scan History
+- Save each scan to MongoDB
+- Show last 10 scans in a grid
+- Click any past scan to view full results
+- Show thumbnail + food name + calories
+- Add delete functionality
+
+### 6. Meal Tracker (Bonus)
+- Let users add scans to "Today's Meals"
+- Calculate running daily totals
+- Show remaining daily calorie budget
+- Persist in localStorage
+
+---
+
+## BACKEND API ENDPOINTS
+
+POST /api/nutrition/analyze
+- Accepts: multipart/form-data (image file)
+- Converts image to base64
+- Sends to Claude API with vision prompt
+- Parses JSON response
+- Saves to MongoDB
+- Returns: nutrition JSON
+
+GET /api/nutrition/history
+- Returns last 20 scan results from DB
+
+DELETE /api/nutrition/:id
+- Deletes a scan from history
+
+---
+
+## STYLING REQUIREMENTS
+
+Use Tailwind CSS with this dark theme:
+- Background: #0a0f1a (deep dark navy)
+- Cards: #0d1f12 (dark green tint)
+- Accent: #4ade80 (bright green)
+- Secondary: #22d3ee (cyan)
+- Warning: #fbbf24 (amber)
+- Danger: #f87171 (red)
+- Text: #e8f4e8 (soft white-green)
+
+Design rules:
+- Glassmorphism cards with subtle green borders
+- Smooth fade-up animations on result load
+- Mobile-first responsive layout
+- Loading skeleton screens while analyzing
+- Micro-interactions on hover
+
+---
+
+## ERROR HANDLING
+
+Handle these cases gracefully:
+- No food detected in image → show friendly message
+- API rate limit hit → retry with backoff
+- Image too large → compress before sending
+- Network failure → show retry button
+- Non-food image → suggest uploading food photo
+
+---
+
+## ENVIRONMENT VARIABLES NEEDED
+
+ANTHROPIC_API_KEY=your_key_here
+MONGODB_URI=your_mongodb_uri
+PORT=5000
+MAX_IMAGE_SIZE_MB=5
+
+---
+
+## STEP BY STEP BUILD ORDER
+
+Step 1: Set up React + Tailwind frontend with routing
+Step 2: Build UploadZone component with drag-drop
+Step 3: Set up Express backend with Multer file upload
+Step 4: Integrate Claude API with vision prompt
+Step 5: Parse and validate JSON nutrition response
+Step 6: Build NutritionCard and MacroChart components
+Step 7: Add Recharts visualizations
+Step 8: Connect MongoDB for scan history
+Step 9: Build ScanHistory page
+Step 10: Add meal tracker with localStorage
+Step 11: Polish UI, add animations
+Step 12: Deploy frontend to Vercel, backend to Railway
+
+---
+
+Build each step completely before moving to the next.
+Write clean, commented code. Use async/await for all API calls.
+Add proper loading and error states everywhere.

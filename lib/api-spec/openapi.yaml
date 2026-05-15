@@ -3,13 +3,15 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: NutriScan AI API specification
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: nutrition
+    description: Nutrition scanning operations
 paths:
   /healthz:
     get:
@@ -24,6 +26,107 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /nutrition/analyze:
+    post:
+      operationId: analyzeFood
+      tags: [nutrition]
+      summary: Analyze a food image
+      description: Upload a food image (multipart/form-data) to get AI-powered nutritional analysis
+      responses:
+        "200":
+          description: Nutritional analysis result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScanResult"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+        "422":
+          description: No food detected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /nutrition/history:
+    get:
+      operationId: getScanHistory
+      tags: [nutrition]
+      summary: Get scan history
+      description: Returns the last 20 scan results
+      responses:
+        "200":
+          description: List of scan results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ScanResult"
+
+  /nutrition/history/{id}:
+    get:
+      operationId: getScanById
+      tags: [nutrition]
+      summary: Get a specific scan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Scan result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScanResult"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+    delete:
+      operationId: deleteScan
+      tags: [nutrition]
+      summary: Delete a scan
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /nutrition/stats:
+    get:
+      operationId: getNutritionStats
+      tags: [nutrition]
+      summary: Get nutrition statistics
+      description: Aggregated stats across all scans (totals, averages, top foods)
+      responses:
+        "200":
+          description: Statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NutritionStats"
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +137,160 @@ components:
       required:
         - status
 
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+
+    Vitamin:
+      type: object
+      required: [name, amount, dailyPct]
+      properties:
+        name:
+          type: string
+        amount:
+          type: string
+        dailyPct:
+          type: number
+
+    Mineral:
+      type: object
+      required: [name, amount]
+      properties:
+        name:
+          type: string
+        amount:
+          type: string
+
+    Recommendation:
+      type: object
+      required: [emoji, text, type]
+      properties:
+        emoji:
+          type: string
+        text:
+          type: string
+        type:
+          type: string
+          enum: [positive, warning, tip]
+
+    ScanResult:
+      type: object
+      required:
+        - id
+        - foodName
+        - confidence
+        - servingSize
+        - calories
+        - protein
+        - carbs
+        - fat
+        - fiber
+        - sugar
+        - sodium
+        - cholesterol
+        - healthScore
+        - healthSummary
+        - vitamins
+        - minerals
+        - allergens
+        - dietaryFlags
+        - ingredients
+        - recommendations
+        - createdAt
+      properties:
+        id:
+          type: integer
+        foodName:
+          type: string
+        confidence:
+          type: number
+        servingSize:
+          type: string
+        calories:
+          type: number
+        protein:
+          type: string
+        carbs:
+          type: string
+        fat:
+          type: string
+        fiber:
+          type: string
+        sugar:
+          type: string
+        sodium:
+          type: string
+        cholesterol:
+          type: string
+        healthScore:
+          type: number
+        healthSummary:
+          type: string
+        vitamins:
+          type: array
+          items:
+            $ref: "#/components/schemas/Vitamin"
+        minerals:
+          type: array
+          items:
+            $ref: "#/components/schemas/Mineral"
+        allergens:
+          type: array
+          items:
+            type: string
+        dietaryFlags:
+          type: array
+          items:
+            type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        recommendations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Recommendation"
+        imageUrl:
+          type: ["string", "null"]
+        createdAt:
+          type: string
+
+    NutritionStats:
+      type: object
+      required:
+        - totalScans
+        - avgCalories
+        - avgHealthScore
+        - topFoods
+        - avgMacros
+      properties:
+        totalScans:
+          type: integer
+        avgCalories:
+          type: number
+        avgHealthScore:
+          type: number
+        topFoods:
+          type: array
+          items:
+            type: object
+            required: [foodName, count]
+            properties:
+              foodName:
+                type: string
+              count:
+                type: integer
+        avgMacros:
+          type: object
+          required: [protein, carbs, fat]
+          properties:
+            protein:
+              type: number
+            carbs:
+              type: number
+            fat:
+              type: number
