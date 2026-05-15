@@ -206,13 +206,13 @@ export default function Landing() {
             style={{ filter: "brightness(0.7) saturate(1.15)" }}
           />
           {/* Layered cinematic overlays */}
-          <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.58) 45%, rgba(0,0,0,0.25) 100%)" }} />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.3) 40%, transparent 70%)" }} />
-          {/* Green ambient glow overlay */}
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 15% 55%, rgba(57,255,136,0.09) 0%, transparent 55%)" }} />
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 50% 70% at 85% 25%, rgba(6,182,212,0.06) 0%, transparent 55%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(105deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.65) 45%, rgba(0,0,0,0.35) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(2,6,23,0.98) 0%, rgba(2,6,23,0.4) 40%, transparent 70%)" }} />
+          {/* Soft emerald ambient — not neon */}
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 60% at 15% 55%, rgba(52,211,153,0.07) 0%, transparent 55%)" }} />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 50% 70% at 85% 25%, rgba(6,182,212,0.04) 0%, transparent 55%)" }} />
           {/* Vignette */}
-          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 120% 100% at 50% 50%, transparent 40%, rgba(0,0,0,0.6) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 120% 100% at 50% 50%, transparent 35%, rgba(0,0,0,0.7) 100%)" }} />
         </div>
 
         {/* Particles float above the photo */}
@@ -221,22 +221,22 @@ export default function Landing() {
         {/* Subtle grid overlay */}
         <div className="absolute inset-0 z-[1] pointer-events-none" style={{ backgroundImage: "linear-gradient(rgba(57,255,136,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(57,255,136,0.025) 1px, transparent 1px)", backgroundSize: "4rem 4rem", maskImage: "radial-gradient(ellipse 80% 60% at 50% 50%, #000 20%, transparent 100%)" }} />
 
-        {/* Animated scan line sweeping across */}
+        {/* Animated scan line — subtle */}
         <motion.div
           animate={{ y: ["-100%", "200%"] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "linear", repeatDelay: 4 }}
-          className="absolute left-0 right-0 h-[2px] z-[2] pointer-events-none"
-          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(57,255,136,0.4) 30%, rgba(57,255,136,0.8) 50%, rgba(57,255,136,0.4) 70%, transparent 100%)", boxShadow: "0 0 20px rgba(57,255,136,0.4)" }}
+          transition={{ duration: 7, repeat: Infinity, ease: "linear", repeatDelay: 6 }}
+          className="absolute left-0 right-0 h-px z-[2] pointer-events-none"
+          style={{ background: "linear-gradient(90deg, transparent 0%, rgba(52,211,153,0.2) 30%, rgba(52,211,153,0.45) 50%, rgba(52,211,153,0.2) 70%, transparent 100%)" }}
         />
 
-        {/* Mouse interactive glow */}
+        {/* Mouse interactive glow — soft */}
         <div
           ref={mouseGlowRef}
-          className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none z-[2] opacity-25"
-          style={{ background: "radial-gradient(circle at center, rgba(57,255,136,0.15) 0%, transparent 65%)", willChange: "transform" }}
+          className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none z-[2] opacity-15"
+          style={{ background: "radial-gradient(circle at center, rgba(52,211,153,0.12) 0%, transparent 65%)", willChange: "transform" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-[1fr_440px] gap-10 xl:gap-16 items-center z-10 pt-36 pb-24 lg:pt-28 lg:pb-16">
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-[1fr_370px] gap-10 xl:gap-14 items-center z-10 pt-36 pb-24 lg:pt-28 lg:pb-16">
 
           {/* LEFT: Content floating above photo */}
           <div className="flex flex-col items-start text-left order-1">
@@ -252,30 +252,35 @@ export default function Landing() {
               <span className="text-xs font-semibold uppercase tracking-widest">AI-Powered Nutrition Intelligence</span>
             </motion.div>
 
-            <h1 className="font-black tracking-tight leading-[0.9] mb-7" style={{ fontSize: "clamp(3.2rem, 7vw, 6rem)" }}>
+            <h1 className="font-black tracking-tight leading-[0.88] mb-8" style={{ fontSize: "clamp(3.4rem, 7.5vw, 6.5rem)" }}>
               <motion.span
-                initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.1 }}
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1, ease: "easeOut" }}
+                className="block font-light tracking-[0.18em] uppercase text-white/55"
+                style={{ fontSize: "0.38em", letterSpacing: "0.22em", marginBottom: "0.35em", textShadow: "0 2px 20px rgba(0,0,0,0.9)" }}
+              >AI-Powered</motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.22, ease: "easeOut" }}
                 className="block text-white"
-                style={{ textShadow: "0 2px 30px rgba(0,0,0,0.9), 0 0 80px rgba(0,0,0,0.5)" }}
-              >Scan.</motion.span>
+                style={{ textShadow: "0 4px 40px rgba(0,0,0,0.8)" }}
+              >AI</motion.span>
               <motion.span
-                initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.2 }}
-                className="block text-white"
-                style={{ textShadow: "0 2px 30px rgba(0,0,0,0.9)" }}
-              >Analyze.</motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 35 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, delay: 0.3 }}
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.36, ease: "easeOut" }}
                 className="block"
-                style={{ background: "linear-gradient(90deg, #39FF88 0%, #06b6d4 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", filter: "drop-shadow(0 0 25px rgba(57,255,136,0.5))" }}
-              >Eat Smarter.</motion.span>
+                style={{
+                  background: "linear-gradient(135deg, #ffffff 0%, #d1fae5 40%, #6ee7b7 80%, #5eead4 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  filter: "drop-shadow(0 2px 20px rgba(110,231,183,0.18))"
+                }}
+              >Wellness</motion.span>
             </h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-base max-w-lg mb-8 leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.72)", textShadow: "0 1px 20px rgba(0,0,0,0.9)" }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.5, ease: "easeOut" }}
+              className="text-lg max-w-md mb-9 leading-relaxed font-light"
+              style={{ color: "rgba(255,255,255,0.58)", textShadow: "0 1px 20px rgba(0,0,0,0.9)", letterSpacing: "0.01em" }}
             >
-              AI-powered nutrition analysis with calorie tracking, vitamin breakdown, health scoring, and personalized dietary recommendations. Simply snap a photo of your meal.
+              Advanced nutrition intelligence designed for healthier living.
             </motion.p>
 
             <motion.div
@@ -284,16 +289,20 @@ export default function Landing() {
             >
               <button
                 onClick={() => navigate("/scanner")}
-                className="flex items-center justify-center gap-2 rounded-full px-8 py-4 font-bold text-base transition-all hover:scale-105 group"
-                style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617", boxShadow: "0 0 35px rgba(57,255,136,0.5), 0 6px 30px rgba(0,0,0,0.5)" }}
+                className="flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-semibold text-sm transition-all hover:scale-[1.03] group"
+                style={{
+                  background: "linear-gradient(135deg, #34d399 0%, #06b6d4 100%)",
+                  color: "#020617",
+                  boxShadow: "0 4px 20px rgba(52,211,153,0.25), 0 8px 30px rgba(0,0,0,0.4)"
+                }}
               >
-                <Camera className="w-5 h-5" /> Start Scanning
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <Camera className="w-4 h-4" /> Start Scanning
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </button>
               <button
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                className="flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-white transition-all hover:bg-white/10"
-                style={{ border: "1px solid rgba(255,255,255,0.22)", background: "rgba(0,0,0,0.45)", backdropFilter: "blur(20px)" }}
+                className="flex items-center justify-center gap-2 rounded-full px-8 py-3.5 font-medium text-sm text-white/70 hover:text-white transition-all"
+                style={{ border: "1px solid rgba(255,255,255,0.12)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(20px)" }}
               >
                 Explore Features
               </button>
@@ -326,83 +335,82 @@ export default function Landing() {
             transition={{ duration: 0.8, delay: 0.55, ease: "easeOut" }}
             className="order-2 relative"
           >
-            {/* Ambient glow behind card */}
-            <div className="absolute inset-0 rounded-3xl blur-3xl scale-90 -z-10 opacity-60" style={{ background: "radial-gradient(ellipse at center, rgba(57,255,136,0.2) 0%, rgba(6,182,212,0.1) 60%, transparent 100%)" }} />
+            {/* Ambient glow behind card — soft */}
+            <div className="absolute inset-0 rounded-3xl blur-3xl scale-90 -z-10 opacity-30" style={{ background: "radial-gradient(ellipse at center, rgba(52,211,153,0.18) 0%, rgba(6,182,212,0.08) 60%, transparent 100%)" }} />
 
             {/* Main glass card */}
             <div
-              className="rounded-3xl p-6 relative overflow-hidden"
+              className="rounded-2xl p-5 relative overflow-hidden"
               style={{
-                background: "rgba(2,8,20,0.65)",
-                backdropFilter: "blur(28px) saturate(180%)",
-                border: "1px solid rgba(57,255,136,0.18)",
-                boxShadow: "0 0 0 1px rgba(255,255,255,0.04) inset, 0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(57,255,136,0.08)"
+                background: "rgba(12,18,20,0.45)",
+                backdropFilter: "blur(18px)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                boxShadow: "0 8px 30px rgba(0,0,0,0.25)"
               }}
             >
-              {/* Inner top glow */}
-              <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(57,255,136,0.5), rgba(6,182,212,0.3), transparent)" }} />
-              <div className="absolute top-0 right-0 w-48 h-48 rounded-full blur-3xl pointer-events-none opacity-30" style={{ background: "rgba(57,255,136,0.15)" }} />
+              {/* Inner top shimmer */}
+              <div className="absolute top-0 inset-x-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent)" }} />
+              <div className="absolute top-0 right-0 w-40 h-40 rounded-full blur-3xl pointer-events-none opacity-15" style={{ background: "rgba(52,211,153,0.2)" }} />
 
               {/* Header row */}
-              <div className="flex items-start justify-between mb-5 relative z-10">
+              <div className="flex items-start justify-between mb-4 relative z-10">
                 <div>
                   <div className="flex items-center gap-2 mb-1.5">
                     <motion.div
-                      animate={{ opacity: [0.5, 1, 0.5], scale: [0.9, 1.1, 0.9] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="w-2 h-2 rounded-full"
-                      style={{ background: "#39FF88", boxShadow: "0 0 8px #39FF88" }}
+                      animate={{ opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="w-1.5 h-1.5 rounded-full"
+                      style={{ background: "#34d399" }}
                     />
-                    <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#39FF88" }}>AI Scan Complete</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-white/40">AI Scan Complete</span>
                   </div>
-                  <div className="text-xl font-black text-white">Grilled Chicken Bowl</div>
-                  <div className="text-xs text-white/40 mt-0.5">Analyzed just now · 1 serving</div>
+                  <div className="text-base font-bold text-white/90">Grilled Chicken Bowl</div>
+                  <div className="text-[10px] text-white/30 mt-0.5">Analyzed just now · 1 serving</div>
                 </div>
-                {/* Health score ring */}
-                <div className="relative w-16 h-16 shrink-0">
+                {/* Health score ring — smaller */}
+                <div className="relative w-13 h-13 shrink-0" style={{ width: 52, height: 52 }}>
                   <svg className="w-full h-full -rotate-90" viewBox="0 0 64 64">
-                    <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="5" />
+                    <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
                     <motion.circle
-                      cx="32" cy="32" r="26" fill="none" stroke="#39FF88" strokeWidth="5"
+                      cx="32" cy="32" r="26" fill="none" stroke="#34d399" strokeWidth="5"
                       strokeDasharray="163"
                       initial={{ strokeDashoffset: 163 }}
                       animate={{ strokeDashoffset: 163 * (1 - 0.88) }}
                       transition={{ delay: 1.2, duration: 1.4, ease: "easeOut" }}
                       strokeLinecap="round"
-                      style={{ filter: "drop-shadow(0 0 8px rgba(57,255,136,0.9))" }}
                     />
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <span className="text-base font-black text-white leading-none">88</span>
-                    <span className="text-[8px] text-white/40 leading-none mt-0.5 uppercase tracking-wide">Score</span>
+                    <span className="text-sm font-black text-white leading-none">88</span>
+                    <span className="text-[7px] text-white/35 leading-none mt-0.5 uppercase tracking-wide">Score</span>
                   </div>
                 </div>
               </div>
 
-              {/* Calorie big display */}
-              <div className="rounded-2xl p-4 mb-4 relative z-10" style={{ background: "rgba(57,255,136,0.06)", border: "1px solid rgba(57,255,136,0.14)" }}>
+              {/* Calorie display */}
+              <div className="rounded-xl p-3.5 mb-3 relative z-10" style={{ background: "rgba(52,211,153,0.05)", border: "1px solid rgba(52,211,153,0.1)" }}>
                 <div className="flex items-end justify-between">
                   <div>
-                    <div className="text-[10px] text-white/45 mb-1 uppercase tracking-widest font-semibold">Total Calories</div>
-                    <div className="flex items-baseline gap-2">
+                    <div className="text-[9px] text-white/35 mb-1 uppercase tracking-widest font-medium">Total Calories</div>
+                    <div className="flex items-baseline gap-1.5">
                       <motion.span
                         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0 }}
-                        className="text-4xl font-black"
-                        style={{ color: "#39FF88", textShadow: "0 0 25px rgba(57,255,136,0.6)" }}
+                        className="text-3xl font-black"
+                        style={{ color: "#6ee7b7" }}
                       >580</motion.span>
-                      <span className="text-base text-white/35 font-light">kcal</span>
+                      <span className="text-sm text-white/30 font-light">kcal</span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[10px] text-white/40 mb-0.5 uppercase tracking-wider">Daily Goal</div>
-                    <div className="text-sm font-bold text-white/60">2,000 kcal</div>
-                    <div className="text-xs font-black mt-1" style={{ color: "#39FF88" }}>29% used</div>
+                    <div className="text-[9px] text-white/30 mb-0.5 uppercase tracking-wider">Daily Goal</div>
+                    <div className="text-xs font-semibold text-white/50">2,000 kcal</div>
+                    <div className="text-[10px] font-bold mt-0.5" style={{ color: "#6ee7b7" }}>29% used</div>
                   </div>
                 </div>
-                <div className="h-1.5 rounded-full overflow-hidden mt-3" style={{ background: "rgba(255,255,255,0.07)" }}>
+                <div className="h-1 rounded-full overflow-hidden mt-2.5" style={{ background: "rgba(255,255,255,0.06)" }}>
                   <motion.div
                     className="h-full rounded-full"
-                    style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", boxShadow: "0 0 10px rgba(57,255,136,0.5)" }}
+                    style={{ background: "linear-gradient(90deg, #34d399, #06b6d4)" }}
                     initial={{ width: 0 }} animate={{ width: "29%" }}
                     transition={{ delay: 1.4, duration: 0.9, ease: "easeOut" }}
                   />
@@ -410,73 +418,70 @@ export default function Landing() {
               </div>
 
               {/* Macros row */}
-              <div className="grid grid-cols-3 gap-2 mb-4 relative z-10">
+              <div className="grid grid-cols-3 gap-1.5 mb-3 relative z-10">
                 {[
-                  { label: "Protein", val: "42g", color: "#06b6d4", pct: 70 },
-                  { label: "Carbs",   val: "38g", color: "#f97316", pct: 45 },
-                  { label: "Fats",    val: "18g", color: "#a855f7", pct: 35 },
+                  { label: "Protein", val: "42g", color: "#67e8f9", pct: 70 },
+                  { label: "Carbs",   val: "38g", color: "#fdba74", pct: 45 },
+                  { label: "Fats",    val: "18g", color: "#c4b5fd", pct: 35 },
                 ].map(m => (
-                  <div key={m.label} className="rounded-xl p-3 text-center" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
-                    <div className="text-lg font-black mb-0.5" style={{ color: m.color }}>{m.val}</div>
-                    <div className="text-[10px] text-white/40 uppercase tracking-wider mb-2">{m.label}</div>
-                    <div className="h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
-                      <motion.div className="h-full rounded-full" style={{ background: m.color }} initial={{ width: 0 }} animate={{ width: `${m.pct}%` }} transition={{ delay: 1.5, duration: 0.8 }} />
+                  <div key={m.label} className="rounded-lg p-2.5 text-center" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                    <div className="text-sm font-bold mb-0.5" style={{ color: m.color }}>{m.val}</div>
+                    <div className="text-[9px] text-white/30 uppercase tracking-wider mb-1.5">{m.label}</div>
+                    <div className="h-0.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                      <motion.div className="h-full rounded-full" style={{ background: m.color, opacity: 0.7 }} initial={{ width: 0 }} animate={{ width: `${m.pct}%` }} transition={{ delay: 1.5, duration: 0.8 }} />
                     </div>
                   </div>
                 ))}
               </div>
 
               {/* Vitamins */}
-              <div className="rounded-2xl p-4 mb-4 relative z-10" style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <div className="text-[10px] text-white/40 font-bold uppercase tracking-widest mb-3">Vitamins & Minerals</div>
-                <div className="space-y-2.5">
+              <div className="rounded-xl p-3 mb-3 relative z-10" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)" }}>
+                <div className="text-[9px] text-white/30 font-semibold uppercase tracking-widest mb-2.5">Vitamins & Minerals</div>
+                <div className="space-y-2">
                   {[
-                    { name: "Vitamin C", val: 88, color: "#f97316" },
-                    { name: "Vitamin D", val: 52, color: "#fbbf24" },
-                    { name: "Iron",      val: 42, color: "#a855f7" },
-                    { name: "Calcium",   val: 65, color: "#06b6d4" },
+                    { name: "Vitamin C", val: 88, color: "#fdba74" },
+                    { name: "Vitamin D", val: 52, color: "#fcd34d" },
+                    { name: "Iron",      val: 42, color: "#c4b5fd" },
+                    { name: "Calcium",   val: 65, color: "#67e8f9" },
                   ].map(v => (
-                    <div key={v.name} className="flex items-center gap-3">
-                      <div className="text-xs text-white/45 w-20 shrink-0">{v.name}</div>
-                      <div className="flex-1 h-1.5 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.07)" }}>
-                        <motion.div className="h-full rounded-full" style={{ background: v.color, boxShadow: `0 0 6px ${v.color}60` }} initial={{ width: 0 }} animate={{ width: `${v.val}%` }} transition={{ delay: 1.6, duration: 0.8 }} />
+                    <div key={v.name} className="flex items-center gap-2.5">
+                      <div className="text-[10px] text-white/35 w-16 shrink-0">{v.name}</div>
+                      <div className="flex-1 h-1 rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+                        <motion.div className="h-full rounded-full" style={{ background: v.color, opacity: 0.7 }} initial={{ width: 0 }} animate={{ width: `${v.val}%` }} transition={{ delay: 1.6, duration: 0.8 }} />
                       </div>
-                      <div className="text-xs font-bold w-8 text-right shrink-0" style={{ color: v.color }}>{v.val}%</div>
+                      <div className="text-[10px] font-semibold w-7 text-right shrink-0 text-white/45">{v.val}%</div>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* AI recommendation */}
-              <div className="flex items-start gap-3 rounded-xl px-4 py-3 relative z-10" style={{ background: "linear-gradient(90deg, rgba(57,255,136,0.07), rgba(6,182,212,0.04))", border: "1px solid rgba(57,255,136,0.14)" }}>
-                <Brain className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "#39FF88" }} />
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: "#39FF88" }}>AI Recommendation</div>
-                  <span className="text-xs text-white/60 leading-relaxed">Excellent protein source. Consider adding quinoa or legumes for extra fiber.</span>
-                </div>
+              <div className="flex items-start gap-2.5 rounded-xl px-3 py-2.5 relative z-10" style={{ background: "rgba(52,211,153,0.04)", border: "1px solid rgba(52,211,153,0.1)" }}>
+                <Brain className="w-3.5 h-3.5 shrink-0 mt-0.5 text-white/40" />
+                <span className="text-[10px] text-white/45 leading-relaxed">Excellent protein source. Consider adding quinoa for extra fiber.</span>
               </div>
             </div>
 
             {/* Floating badge — top left */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: 10 }}
+              initial={{ opacity: 0, scale: 0.85, y: 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 1.3, type: "spring" }}
-              className="absolute -top-5 -left-5 rounded-2xl px-3 py-2 flex items-center gap-2 text-xs font-bold"
-              style={{ background: "rgba(2,8,20,0.8)", backdropFilter: "blur(16px)", border: "1px solid rgba(250,204,21,0.35)", color: "#fbbf24", boxShadow: "0 4px 20px rgba(0,0,0,0.5)" }}
+              transition={{ delay: 1.3, type: "spring", stiffness: 180 }}
+              className="absolute -top-4 -left-4 rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 text-[10px] font-semibold"
+              style={{ background: "rgba(8,14,20,0.75)", backdropFilter: "blur(16px)", border: "1px solid rgba(253,186,116,0.2)", color: "rgba(253,186,116,0.8)" }}
             >
-              <Zap className="w-3.5 h-3.5" /> Instant Analysis
+              <Zap className="w-3 h-3" /> Instant Analysis
             </motion.div>
 
             {/* Floating badge — bottom right */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8, y: -10 }}
+              initial={{ opacity: 0, scale: 0.85, y: -8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 1.5, type: "spring" }}
-              className="absolute -bottom-5 -right-5 rounded-2xl px-3 py-2 flex items-center gap-2 text-xs font-bold"
-              style={{ background: "rgba(2,8,20,0.8)", backdropFilter: "blur(16px)", border: "1px solid rgba(168,85,247,0.35)", color: "#c084fc", boxShadow: "0 4px 20px rgba(0,0,0,0.5)" }}
+              transition={{ delay: 1.5, type: "spring", stiffness: 180 }}
+              className="absolute -bottom-4 -right-4 rounded-xl px-2.5 py-1.5 flex items-center gap-1.5 text-[10px] font-semibold"
+              style={{ background: "rgba(8,14,20,0.75)", backdropFilter: "blur(16px)", border: "1px solid rgba(196,181,253,0.2)", color: "rgba(196,181,253,0.8)" }}
             >
-              <Brain className="w-3.5 h-3.5" /> Powered by Claude AI
+              <Brain className="w-3 h-3" /> Powered by Claude AI
             </motion.div>
           </motion.div>
 

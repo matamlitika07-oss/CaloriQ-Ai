@@ -1,0 +1,125 @@
+Refine the CaloriQ AI hero section to make it feel MORE PREMIUM, CLEAN, and LUXURIOUS.
+
+IMPORTANT:
+Do NOT redesign the layout.
+Do NOT break responsiveness or functionality.
+Only refine the existing hero section styling.
+
+CHANGES REQUIRED:
+
+1. MAIN HERO TEXT
+   Replace:
+   “Scan. Analyze. Eat Smarter.”
+
+WITH:
+“AI Wellness”
+
+Style Requirements:
+
+* Elegant luxury typography
+* Large but clean
+* Minimal premium look
+* White text with subtle emerald gradient
+* Soft glow only
+* No harsh neon/radium effect
+* Apple-style sophistication
+* Smooth letter spacing
+* Cinematic fade-in animation
+
+2. SUBTITLE
+   Use a premium modern subtitle like:
+   “Advanced nutrition intelligence designed for healthier living.”
+
+Keep it:
+
+* smaller
+* soft gray-white
+* highly readable
+* elegant spacing
+
+3. INSTANT ANALYSIS POPUP / FLOATING CARD
+   The current popup feels:
+
+* too large
+* too bright
+* visually heavy
+
+Make it:
+
+* 30–40% smaller
+* cleaner
+* more minimal
+* premium glassmorphism
+* subtle transparency
+* softer glow
+
+REMOVE:
+
+* strong neon/radium green
+* excessive shadows
+* aggressive glowing borders
+
+REPLACE WITH:
+
+```css
+background: rgba(12, 18, 20, 0.45);
+backdrop-filter: blur(18px);
+border: 1px solid rgba(255,255,255,0.08);
+box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+```
+
+4. GLOW EFFECTS
+   Current glow feels cheap and overly fluorescent.
+
+Convert all green glows into:
+
+* soft emerald ambience
+* luxury cinematic lighting
+* subtle premium illumination
+* elegant dark green gradients
+
+Glow should feel like:
+
+* premium Apple UI
+* high-end wellness product
+* modern luxury SaaS
+
+NOT:
+
+* gaming neon
+* cyberpunk
+* radioactive green
+
+5. BACKGROUND ATMOSPHERE
+   Keep realistic food background but:
+
+* slightly darker
+* more blurred
+* cinematic depth
+* subtle vignette
+* smoother overlays
+
+6. BUTTONS
+   Make buttons:
+
+* elegant
+* slightly transparent
+* soft hover animations
+* premium rounded corners
+* subtle shadows only
+
+7. OVERALL VISUAL FEEL
+   Target aesthetic:
+
+* luxury wellness technology
+* premium nutrition intelligence
+* cinematic healthy lifestyle app
+* calm futuristic interface
+
+FINAL RESULT:
+The landing page should feel:
+minimal,
+premium,
+classy,
+modern,
+and sophisticated — not flashy or overly neon.
