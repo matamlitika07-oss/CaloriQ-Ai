@@ -1,0 +1,175 @@
+Update the current landing page UI of my NutriScan AI application completely without breaking or removing any existing functionality, routes, backend integrations, authentication, APIs, database connections, or scan features.
+
+IMPORTANT:
+
+* Do NOT modify backend logic.
+* Do NOT change API endpoints.
+* Do NOT remove any existing components or functionality.
+* Do NOT affect authentication, history, analytics, AI scanning, database saving, or image upload logic.
+* Only redesign and improve the frontend UI/UX professionally.
+* Preserve responsiveness and ensure the website still works perfectly after redesign.
+
+GOAL:
+Transform the landing page into a premium futuristic AI-powered nutrition and food analysis website with a strong food-related aesthetic.
+
+DESIGN STYLE:
+
+* Dark luxury UI with glowing neon green accents
+* Premium SaaS + AI healthcare style
+* Food-focused visuals and atmosphere
+* Modern glassmorphism + soft glow effects
+* Smooth animations and hover interactions
+* Fully responsive for desktop/mobile
+
+COLOR PALETTE:
+
+* Background: deep black / dark green gradient
+* Primary accent: neon green (#39FF88)
+* Secondary accent: emerald green
+* Text: white and light gray
+* Soft glowing borders and shadows
+
+USE MY EXISTING LOGO:
+
+* Use the uploaded NutriScan AI salad logo in the navbar and hero section
+* Add subtle glowing effect around logo
+* Keep branding consistent
+
+LANDING PAGE STRUCTURE:
+
+1. NAVBAR
+
+* Sticky transparent navbar
+* Logo on left
+* Navigation links:
+  Home
+  Features
+  How It Works
+  Analytics
+  AI Insights
+  Contact
+* Login and Get Started buttons on right
+* Smooth hover effects
+
+2. HERO SECTION
+   Create a stunning premium hero section inspired by modern AI healthcare and food-tech platforms.
+
+LEFT SIDE:
+
+* Large headline:
+  “Scan. Analyze. Eat Smarter.”
+* Subtitle:
+  “AI-powered nutrition analysis with calorie tracking, vitamin breakdown, health scoring, and personalized dietary recommendations.”
+* Two CTA buttons:
+
+  * Start Scanning
+  * Explore Features
+* Small trusted-users/rating section
+
+RIGHT SIDE:
+
+* Large realistic glowing food bowl image
+* Floating nutrition analytics card
+* Show:
+  calories
+  protein
+  carbs
+  fats
+  vitamin levels
+  health score circle
+* Add floating food ingredients in background
+* Add subtle holographic scanner glow under food bowl
+
+3. FEATURES SECTION
+   Create premium animated feature cards with icons.
+
+Features:
+
+* Food Recognition
+* Calorie Estimation
+* Macronutrient Analysis
+* Vitamin & Mineral Detection
+* AI Dietary Recommendations
+* Health Score Prediction
+* Smart Nutrition Tracking
+* Scan History Management
+
+Cards should:
+
+* Glow on hover
+* Have modern gradients
+* Use food-health icons
+* Include short descriptions
+
+4. HOW IT WORKS SECTION
+   4 animated steps:
+5. Upload Food Image
+6. AI Vision Analysis
+7. Nutrition Breakdown
+8. Personalized Health Recommendations
+
+Use connecting glowing lines/arrows.
+
+5. DASHBOARD PREVIEW SECTION
+   Show a premium fake dashboard preview:
+
+* nutrition charts
+* health score ring
+* calorie tracker
+* recent scans
+* AI recommendations
+* macro breakdown charts
+
+Make it look futuristic and premium.
+
+6. MOBILE APP MOCKUP
+   Add smartphone mockup displaying NutriScan dashboard UI.
+
+7. BACKGROUND EFFECTS
+
+* Floating vegetables/fruits
+* Blurred gradient orbs
+* Tiny particles
+* Glow effects
+* Smooth animated gradients
+* Food-themed visual atmosphere
+
+8. FOOTER
+   Professional footer with:
+
+* logo
+* quick links
+* social icons
+* copyright
+* AI nutrition tagline
+
+TECHNICAL REQUIREMENTS:
+
+* Keep existing React/Vite/Tailwind structure intact
+* Maintain routing and functionality
+* Use TailwindCSS properly
+* Optimize images and performance
+* No console errors
+* No white screens
+* No crashing
+* No broken imports
+* Preserve all existing working pages
+
+ANIMATIONS:
+Use smooth Framer Motion animations:
+
+* fade-up
+* floating effects
+* hover glow
+* smooth transitions
+* animated counters
+
+FINAL GOAL:
+The website should look like a premium AI-powered nutrition startup product combining:
+
+* futuristic AI aesthetics
+* real healthy food visuals
+* nutrition analytics
+* modern SaaS dashboard design
+* premium health-tech branding
+  while keeping all existing features fully functional.

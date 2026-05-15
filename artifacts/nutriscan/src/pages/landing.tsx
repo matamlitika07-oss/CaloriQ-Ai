@@ -1,43 +1,36 @@
 import { useEffect, useRef, useMemo, useState, type CSSProperties } from "react";
 import { useLocation } from "wouter";
-import { motion, useInView } from "framer-motion";
-import { 
-  Menu, X, ScanSearch, Flame, Activity, Brain, Zap, BarChart3, 
-  Camera, ChevronRight, Activity as ActivityIcon 
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import {
+  Menu, X, ScanSearch, Flame, Activity, Brain, Zap, BarChart3,
+  Camera, ChevronRight, Star, Shield, TrendingUp, Leaf,
+  Clock, Award, Database, Smartphone, Twitter, Github, Instagram,
+  ArrowRight, CheckCircle2, Sparkles, Heart, Target
 } from "lucide-react";
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip, Cell, PieChart, Pie, RadialBarChart, RadialBar } from "recharts";
 
-// Inline SVG Emblem Component
 const LogoEmblem = ({ className = "", style }: { className?: string; style?: CSSProperties }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} style={style}>
-    <path d="M50 5L93.3013 25V75L50 95L6.69873 75V25L50 5Z" stroke="#22c55e" strokeWidth="2" strokeOpacity="0.5"/>
+    <path d="M50 5L93.3013 25V75L50 95L6.69873 75V25L50 5Z" stroke="#39FF88" strokeWidth="2" strokeOpacity="0.5"/>
     <path d="M50 15L84.641 35V65L50 85L15.359 65V35L50 15Z" stroke="#06b6d4" strokeWidth="2" strokeOpacity="0.8"/>
-    <circle cx="50" cy="50" r="15" fill="#22c55e" fillOpacity="0.2" stroke="#22c55e" strokeWidth="2"/>
+    <circle cx="50" cy="50" r="15" fill="#39FF88" fillOpacity="0.2" stroke="#39FF88" strokeWidth="2"/>
     <path d="M50 30V70M30 50H70" stroke="#06b6d4" strokeWidth="2" strokeLinecap="round"/>
   </svg>
 );
 
 const ParticleField = () => {
   const particles = useMemo(() => {
-    return Array.from({ length: 80 }).map((_, i) => {
-      // Seeded random-like generation based on index
+    return Array.from({ length: 60 }).map((_, i) => {
       const seed1 = (i * 137) % 100;
       const seed2 = (i * 251) % 100;
       const seed3 = (i * 367) % 100;
-      
-      const left = seed1;
-      const top = seed2;
-      const size = (seed3 % 3) + 1;
-      const duration = 4 + (seed1 % 8);
-      const delay = (seed2 % 5);
-      
       return {
         id: i,
-        left: `${left}%`,
-        top: `${top}%`,
-        size: `${size}px`,
-        duration,
-        delay,
+        left: `${seed1}%`,
+        top: `${seed2}%`,
+        size: `${(seed3 % 3) + 1}px`,
+        duration: 4 + (seed1 % 8),
+        delay: seed2 % 5,
       };
     });
   }, []);
@@ -47,36 +40,166 @@ const ParticleField = () => {
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute bg-emerald-400 rounded-full"
+          className="absolute rounded-full"
           style={{
-            left: p.left,
-            top: p.top,
-            width: p.size,
-            height: p.size,
+            left: p.left, top: p.top, width: p.size, height: p.size,
+            background: p.id % 3 === 0 ? "#39FF88" : p.id % 3 === 1 ? "#06b6d4" : "#4ade80",
           }}
           animate={{
-            x: [(p.id % 2 === 0 ? -30 : 30), (p.id % 2 === 0 ? 30 : -30)],
-            y: [(p.id % 3 === 0 ? -40 : 40), (p.id % 3 === 0 ? 40 : -40)],
-            opacity: [0.1, 0.6, 0.1]
+            x: [p.id % 2 === 0 ? -25 : 25, p.id % 2 === 0 ? 25 : -25],
+            y: [p.id % 3 === 0 ? -35 : 35, p.id % 3 === 0 ? 35 : -35],
+            opacity: [0.08, 0.5, 0.08]
           }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            repeatType: "mirror",
-            ease: "easeInOut"
-          }}
+          transition={{ duration: p.duration, delay: p.delay, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
         />
       ))}
     </div>
   );
 };
 
+const FloatingFoodEmoji = ({ emoji, style }: { emoji: string; style: CSSProperties }) => (
+  <motion.div
+    className="absolute text-4xl pointer-events-none select-none"
+    style={style}
+    animate={{ y: [-12, 12, -12], rotate: [-5, 5, -5] }}
+    transition={{ duration: 5 + Math.random() * 3, repeat: Infinity, ease: "easeInOut" }}
+  >
+    {emoji}
+  </motion.div>
+);
+
+const NutritionCard = () => (
+  <motion.div
+    initial={{ opacity: 0, x: 40, y: -20 }}
+    animate={{ opacity: 1, x: 0, y: 0 }}
+    transition={{ delay: 0.8, duration: 0.6 }}
+    className="absolute -right-4 top-8 bg-black/70 backdrop-blur-xl border border-[#39FF88]/30 rounded-2xl p-4 shadow-[0_0_30px_rgba(57,255,136,0.15)] w-52"
+  >
+    <div className="text-xs text-[#39FF88] font-bold uppercase tracking-wider mb-3">Nutrition Analysis</div>
+    <div className="space-y-2">
+      {[
+        { label: "Calories", value: "620 kcal", color: "#39FF88" },
+        { label: "Protein", value: "28g", color: "#06b6d4" },
+        { label: "Carbs", value: "45g", color: "#f97316" },
+        { label: "Fats", value: "22g", color: "#a855f7" },
+      ].map(n => (
+        <div key={n.label} className="flex justify-between items-center">
+          <span className="text-xs text-white/60">{n.label}</span>
+          <span className="text-xs font-bold" style={{ color: n.color }}>{n.value}</span>
+        </div>
+      ))}
+    </div>
+    <div className="mt-3 pt-3 border-t border-white/10">
+      <div className="flex items-center justify-between">
+        <span className="text-xs text-white/60">Health Score</span>
+        <span className="text-sm font-black text-[#39FF88]">92/100</span>
+      </div>
+      <div className="h-1.5 bg-white/10 rounded-full mt-1.5 overflow-hidden">
+        <motion.div
+          className="h-full rounded-full bg-gradient-to-r from-[#39FF88] to-[#06b6d4]"
+          initial={{ width: 0 }}
+          animate={{ width: "92%" }}
+          transition={{ delay: 1.2, duration: 1, ease: "easeOut" }}
+        />
+      </div>
+    </div>
+  </motion.div>
+);
+
+const HealthScoreCard = () => (
+  <motion.div
+    initial={{ opacity: 0, x: -30, y: 20 }}
+    animate={{ opacity: 1, x: 0, y: 0 }}
+    transition={{ delay: 1.0, duration: 0.6 }}
+    className="absolute -left-4 bottom-16 bg-black/70 backdrop-blur-xl border border-cyan-500/30 rounded-2xl p-4 shadow-[0_0_25px_rgba(6,182,212,0.15)] w-44"
+  >
+    <div className="flex items-center gap-2 mb-2">
+      <div className="w-2 h-2 rounded-full bg-[#39FF88] animate-pulse" />
+      <span className="text-xs text-white/70 font-medium">AI Scanning...</span>
+    </div>
+    <div className="text-2xl font-black text-[#39FF88] mb-1">98.2%</div>
+    <div className="text-xs text-white/50">Recognition Accuracy</div>
+  </motion.div>
+);
+
+const FoodBowlIllustration = () => (
+  <div className="relative w-full h-full flex items-center justify-center">
+    {/* Holographic scanner glow */}
+    <motion.div
+      animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.7, 0.3] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute w-72 h-20 bg-[#39FF88]/20 rounded-full blur-2xl bottom-10"
+    />
+    <motion.div
+      animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.5, 0.2] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      className="absolute w-56 h-16 bg-cyan-500/15 rounded-full blur-xl bottom-10"
+    />
+
+    {/* Scanner ring */}
+    <motion.div
+      animate={{ opacity: [0.4, 1, 0.4], scale: [0.95, 1.05, 0.95] }}
+      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute w-64 h-64 rounded-full border-2 border-dashed border-[#39FF88]/40"
+      style={{ boxShadow: "0 0 30px rgba(57,255,136,0.1), inset 0 0 30px rgba(57,255,136,0.05)" }}
+    />
+    <motion.div
+      animate={{ rotate: 360 }}
+      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+      className="absolute w-64 h-64 rounded-full border border-[#39FF88]/20"
+    >
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#39FF88] shadow-[0_0_10px_rgba(57,255,136,0.8)]" />
+    </motion.div>
+
+    {/* Bowl */}
+    <motion.div
+      animate={{ y: [-8, 8, -8] }}
+      transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
+      className="relative z-10 text-center"
+    >
+      <div className="text-9xl drop-shadow-[0_0_30px_rgba(57,255,136,0.6)] select-none">🥗</div>
+
+      {/* Floating ingredients */}
+      <motion.div className="absolute -top-6 -left-8 text-3xl" animate={{ y: [-5,5,-5], rotate: [-10,10,-10] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}>🥑</motion.div>
+      <motion.div className="absolute -top-4 -right-6 text-2xl" animate={{ y: [-6,6,-6], rotate: [10,-10,10] }} transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}>🍅</motion.div>
+      <motion.div className="absolute top-4 -right-10 text-2xl" animate={{ y: [-4,4,-4], rotate: [-8,8,-8] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}>🥦</motion.div>
+      <motion.div className="absolute top-8 -left-10 text-2xl" animate={{ y: [-7,7,-7], rotate: [5,-5,5] }} transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}>🫐</motion.div>
+      <motion.div className="absolute -bottom-2 -right-8 text-xl" animate={{ y: [-4,4,-4] }} transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}>🍋</motion.div>
+    </motion.div>
+
+    {/* Vitamin badges */}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.4 }}
+      className="absolute top-4 left-0 bg-black/60 backdrop-blur border border-purple-500/30 rounded-full px-3 py-1 text-xs font-bold text-purple-400"
+    >
+      Vit C: 88%
+    </motion.div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 1.6 }}
+      className="absolute bottom-8 right-0 bg-black/60 backdrop-blur border border-orange-500/30 rounded-full px-3 py-1 text-xs font-bold text-orange-400"
+    >
+      Iron: 42%
+    </motion.div>
+  </div>
+);
+
 export default function Landing() {
   const [, navigate] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const mouseGlowRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef(null);
+  const featuresInView = useInView(featuresRef, { once: true, amount: 0.1 });
+  const howItWorksRef = useRef(null);
+  const howItWorksInView = useInView(howItWorksRef, { once: true, amount: 0.2 });
+  const dashboardRef = useRef(null);
+  const dashboardInView = useInView(dashboardRef, { once: true, amount: 0.1 });
+  const mobileRef = useRef(null);
+  const mobileInView = useInView(mobileRef, { once: true, amount: 0.2 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -87,21 +210,10 @@ export default function Landing() {
         mouseGlowRef.current.style.transform = `translate(${x - 300}px, ${y - 300}px)`;
       }
     };
-
     const hero = heroRef.current;
-    if (hero) {
-      hero.addEventListener("mousemove", handleMouseMove);
-    }
-    return () => {
-      if (hero) hero.removeEventListener("mousemove", handleMouseMove);
-    };
+    if (hero) hero.addEventListener("mousemove", handleMouseMove);
+    return () => { if (hero) hero.removeEventListener("mousemove", handleMouseMove); };
   }, []);
-
-  const featuresRef = useRef(null);
-  const featuresInView = useInView(featuresRef, { once: true, amount: 0.2 });
-
-  const mockupRef = useRef(null);
-  const mockupInView = useInView(mockupRef, { once: true, amount: 0.2 });
 
   const chartData = [
     { name: 'Mon', cals: 1800 },
@@ -109,490 +221,805 @@ export default function Landing() {
     { name: 'Wed', cals: 1650 },
     { name: 'Thu', cals: 1900 },
     { name: 'Fri', cals: 2200 },
+    { name: 'Sat', cals: 1750 },
+    { name: 'Sun', cals: 1600 },
+  ];
+
+  const macroData = [
+    { name: "Protein", value: 28, fill: "#06b6d4" },
+    { name: "Carbs", value: 45, fill: "#f97316" },
+    { name: "Fats", value: 22, fill: "#a855f7" },
+    { name: "Fiber", value: 12, fill: "#39FF88" },
+  ];
+
+  const navLinks = [
+    { label: "Home", action: () => window.scrollTo({ top: 0, behavior: "smooth" }) },
+    { label: "Features", action: () => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" }) },
+    { label: "How It Works", action: () => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" }) },
+    { label: "Analytics", action: () => navigate("/analytics") },
+    { label: "AI Insights", action: () => navigate("/ai-insights") },
+    { label: "Contact", action: () => document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" }) },
   ];
 
   return (
-    <div className="min-h-[100dvh] bg-[#020617] text-white font-sans overflow-x-hidden selection:bg-emerald-500/30">
-      
-      {/* NAVBAR */}
-      <motion.nav 
+    <div className="min-h-[100dvh] text-white font-sans overflow-x-hidden selection:bg-emerald-500/30" style={{ background: "linear-gradient(135deg, #020617 0%, #021a0e 50%, #020617 100%)" }}>
+
+      {/* ── NAVBAR ── */}
+      <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring" as const, stiffness: 100, damping: 20 }}
-        className="fixed top-0 inset-x-0 z-50 bg-[#020617]/80 backdrop-blur-xl border-b border-white/5"
+        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+        className="fixed top-0 inset-x-0 z-50 backdrop-blur-xl border-b border-white/5"
+        style={{ background: "rgba(2,6,23,0.85)" }}
       >
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <LogoEmblem className="w-8 h-8" />
-            <span className="font-bold text-xl tracking-tight text-white">NutriScan AI</span>
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <div className="relative">
+              <LogoEmblem className="w-9 h-9" style={{ filter: "drop-shadow(0 0 8px rgba(57,255,136,0.7))" }} />
+              <div className="absolute inset-0 bg-[#39FF88]/20 rounded-full blur-md -z-10" />
+            </div>
+            <span className="font-black text-xl tracking-tight text-white">NutriScan <span style={{ color: "#39FF88" }}>AI</span></span>
           </div>
-          
-          <div className="hidden md:flex items-center gap-8">
-            <button 
-              onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-              className="text-white/70 hover:text-white transition-colors text-sm font-medium"
-            >
-              Features
-            </button>
-            <button 
-              onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
-              className="text-white/70 hover:text-white transition-colors text-sm font-medium"
-            >
-              How It Works
-            </button>
-            <button 
+
+          <div className="hidden lg:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={link.action}
+                className="text-white/60 hover:text-white transition-colors text-sm font-medium hover:text-[#39FF88]"
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="hidden lg:flex items-center gap-3">
+            <button
               onClick={() => navigate("/scanner")}
-              className="bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-full px-6 py-2.5 text-sm font-bold shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] hover:scale-105 transition-all"
+              className="text-white/70 hover:text-white text-sm font-medium px-5 py-2.5 rounded-full border border-white/10 hover:border-white/30 transition-all"
             >
-              Get Started →
+              Login
+            </button>
+            <button
+              onClick={() => navigate("/scanner")}
+              className="text-sm font-bold px-6 py-2.5 rounded-full transition-all hover:scale-105"
+              style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617", boxShadow: "0 0 20px rgba(57,255,136,0.35)" }}
+            >
+              Get Started
             </button>
           </div>
 
-          <button className="md:hidden text-white/70" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X /> : <Menu />}
+          <button className="lg:hidden text-white/70 p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden border-t border-white/10 overflow-hidden"
+              style={{ background: "rgba(2,6,23,0.98)" }}
+            >
+              <div className="px-6 py-4 flex flex-col gap-3">
+                {navLinks.map((link) => (
+                  <button
+                    key={link.label}
+                    onClick={() => { link.action(); setMobileMenuOpen(false); }}
+                    className="text-white/70 hover:text-[#39FF88] text-sm font-medium py-2 text-left transition-colors"
+                  >
+                    {link.label}
+                  </button>
+                ))}
+                <div className="flex gap-3 pt-2 border-t border-white/10">
+                  <button onClick={() => navigate("/scanner")} className="flex-1 text-sm font-bold py-3 rounded-full border border-white/20 text-white/70">Login</button>
+                  <button onClick={() => navigate("/scanner")} className="flex-1 text-sm font-bold py-3 rounded-full" style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617" }}>Get Started</button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
-      {/* HERO SECTION */}
-      <section ref={heroRef} className="relative min-h-[100dvh] pt-20 flex flex-col lg:flex-row items-center justify-center overflow-hidden">
-        
+      {/* ── HERO SECTION ── */}
+      <section ref={heroRef} className="relative min-h-[100dvh] pt-20 flex items-center overflow-hidden">
         <ParticleField />
-        
-        {/* Glow Blobs */}
-        <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] bg-cyan-500/12 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-[40%] left-[50%] -translate-x-1/2 w-[700px] h-[500px] bg-blue-500/8 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] bg-emerald-500/12 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Background orbs */}
+        <div className="absolute top-[-5%] left-[-5%] w-[700px] h-[700px] rounded-full blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, rgba(57,255,136,0.08) 0%, transparent 70%)" }} />
+        <div className="absolute top-[10%] right-[-10%] w-[600px] h-[600px] rounded-full blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, rgba(6,182,212,0.07) 0%, transparent 70%)" }} />
+        <div className="absolute bottom-[-10%] left-[30%] w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none" style={{ background: "radial-gradient(circle, rgba(57,255,136,0.06) 0%, transparent 70%)" }} />
+
+        {/* Grid overlay */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(57,255,136,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(57,255,136,0.025)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_20%,transparent_100%)] pointer-events-none" />
+
         {/* Vertical light beams */}
-        <div className="absolute top-0 left-[25%] w-px h-full bg-gradient-to-b from-emerald-500/0 via-emerald-500/20 to-emerald-500/0 pointer-events-none" />
-        <div className="absolute top-0 left-[75%] w-px h-full bg-gradient-to-b from-cyan-500/0 via-cyan-500/15 to-cyan-500/0 pointer-events-none" />
-        <div className="absolute top-0 left-[50%] w-px h-full bg-gradient-to-b from-blue-500/0 via-blue-500/10 to-blue-500/0 pointer-events-none" />
+        <div className="absolute top-0 left-[30%] w-px h-full bg-gradient-to-b from-[#39FF88]/0 via-[#39FF88]/15 to-[#39FF88]/0 pointer-events-none" />
+        <div className="absolute top-0 left-[70%] w-px h-full bg-gradient-to-b from-cyan-500/0 via-cyan-500/10 to-cyan-500/0 pointer-events-none" />
 
-        {/* Grid Overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_10%,transparent_100%)] pointer-events-none" />
-
-        {/* Mouse Glow */}
-        <div 
+        {/* Mouse glow */}
+        <div
           ref={mouseGlowRef}
-          className="absolute top-0 left-0 w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.1)_0%,transparent_70%)] pointer-events-none opacity-50 transition-opacity duration-300"
-          style={{ willChange: 'transform' }}
+          className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none opacity-40 transition-opacity duration-300"
+          style={{ background: "radial-gradient(circle at center, rgba(57,255,136,0.1) 0%, transparent 70%)", willChange: "transform" }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center z-10 py-20 lg:py-0">
-          
-          {/* LEFT: 3D Orbital Logo */}
-          <div className="relative flex items-center justify-center order-2 lg:order-1" style={{ height: "480px" }}>
-            {/* Pulsing core glow */}
-            <motion.div
-              animate={{ scale: [1, 1.4, 1], opacity: [0.25, 0.55, 0.25] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute w-40 h-40 bg-emerald-500/25 rounded-full blur-3xl pointer-events-none z-0"
-            />
+        {/* Floating background food */}
+        <FloatingFoodEmoji emoji="🥑" style={{ top: "15%", left: "5%", opacity: 0.08, fontSize: "5rem" }} />
+        <FloatingFoodEmoji emoji="🍊" style={{ top: "60%", left: "2%", opacity: 0.07, fontSize: "4rem" }} />
+        <FloatingFoodEmoji emoji="🥦" style={{ top: "20%", right: "3%", opacity: 0.07, fontSize: "4.5rem" }} />
+        <FloatingFoodEmoji emoji="🍇" style={{ bottom: "15%", right: "5%", opacity: 0.07, fontSize: "4rem" }} />
 
-            {/* Outer orbital ring + dots — positioned absolutely from the center */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 16, ease: "linear", repeat: Infinity }}
-              style={{ position: "absolute", width: 420, height: 420, borderRadius: "50%", border: "1px dashed rgba(34,197,94,0.3)" }}
-            >
-              <div style={{ position: "absolute", top: -8, left: "50%", transform: "translateX(-50%)", width: 16, height: 16, borderRadius: "50%", background: "#3b82f6", boxShadow: "0 0 18px 6px rgba(59,130,246,0.7)" }} />
-              <div style={{ position: "absolute", bottom: -8, left: "50%", transform: "translateX(-50%)", width: 16, height: 16, borderRadius: "50%", background: "#22c55e", boxShadow: "0 0 18px 6px rgba(34,197,94,0.7)" }} />
-              <div style={{ position: "absolute", top: "50%", left: -8, transform: "translateY(-50%)", width: 10, height: 10, borderRadius: "50%", background: "#a855f7", boxShadow: "0 0 12px 4px rgba(168,85,247,0.6)" }} />
-            </motion.div>
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 py-24 lg:py-0">
 
-            {/* Middle orbital ring */}
+          {/* LEFT: Text content */}
+          <div className="flex flex-col items-start text-left order-1">
             <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 9, ease: "linear", repeat: Infinity }}
-              style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%", border: "1px solid rgba(6,182,212,0.35)" }}
-            >
-              <div style={{ position: "absolute", top: "50%", left: -8, transform: "translateY(-50%)", width: 14, height: 14, borderRadius: "50%", background: "#06b6d4", boxShadow: "0 0 16px 5px rgba(6,182,212,0.7)" }} />
-              <div style={{ position: "absolute", top: "50%", right: -8, transform: "translateY(-50%)", width: 10, height: 10, borderRadius: "50%", background: "#22d3ee", boxShadow: "0 0 12px 4px rgba(6,182,212,0.5)" }} />
-              <div style={{ position: "absolute", top: -6, left: "50%", transform: "translateX(-50%)", width: 8, height: 8, borderRadius: "50%", background: "#67e8f9", boxShadow: "0 0 8px 3px rgba(6,182,212,0.4)" }} />
-            </motion.div>
-
-            {/* Inner ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 5, ease: "linear", repeat: Infinity }}
-              style={{ position: "absolute", width: 190, height: 190, borderRadius: "50%", border: "2px solid rgba(34,197,94,0.45)", boxShadow: "0 0 25px rgba(34,197,94,0.08), inset 0 0 25px rgba(34,197,94,0.04)" }}
-            >
-              <div style={{ position: "absolute", top: "13%", right: "13%", width: 14, height: 14, borderRadius: "50%", background: "#4ade80", boxShadow: "0 0 16px 5px rgba(34,197,94,0.8)" }} />
-              <div style={{ position: "absolute", bottom: "13%", left: "13%", width: 9, height: 9, borderRadius: "50%", background: "#86efac", boxShadow: "0 0 10px 3px rgba(34,197,94,0.5)" }} />
-            </motion.div>
-
-            {/* Floating core logo */}
-            <motion.div
-              animate={{ y: [-14, 14, -14] }}
-              transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
-              style={{ position: "relative", zIndex: 10 }}
-            >
-              <LogoEmblem
-                className="w-28 h-28"
-                style={{ filter: "drop-shadow(0 0 18px rgba(34,197,94,0.9)) drop-shadow(0 0 45px rgba(34,197,94,0.45)) drop-shadow(0 0 70px rgba(6,182,212,0.3))" }}
-              />
-            </motion.div>
-
-            {/* Label + holographic platform */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 1.2 }}
-              style={{ position: "absolute", bottom: 16, display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}
-            >
-              <span className="tracking-[0.5em] text-xs font-bold text-emerald-400/60 uppercase">NUTRISCAN AI</span>
-              <div className="w-64 h-5 bg-gradient-to-r from-emerald-500/30 via-cyan-500/30 to-blue-500/30 blur-2xl rounded-full" />
-            </motion.div>
-          </div>
-
-          {/* RIGHT: Typography & CTA */}
-          <div className="flex flex-col items-start text-left order-1 lg:order-2 z-10 pt-10 lg:pt-0">
-            <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-6 uppercase tracking-wider"
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6"
+              style={{ borderColor: "rgba(57,255,136,0.3)", background: "rgba(57,255,136,0.08)", color: "#39FF88" }}
             >
-              ✦ AI-Powered Nutrition Intelligence
+              <Sparkles className="w-3.5 h-3.5" />
+              <span className="text-xs font-semibold uppercase tracking-widest">AI-Powered Nutrition Intelligence</span>
             </motion.div>
-            
-            <h1 className="font-black tracking-tight leading-[0.9] mb-8" style={{ fontSize: "clamp(3.5rem, 8vw, 7.5rem)" }}>
-              <motion.span 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="block text-white"
-                style={{ letterSpacing: "-0.02em" }}
-              >
-                NUTRISCAN
-              </motion.span>
-              <motion.span 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.25 }}
+
+            <h1 className="font-black tracking-tight leading-[0.92] mb-6" style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}>
+              <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="block text-white">Scan.</motion.span>
+              <motion.span initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="block text-white">Analyze.</motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
                 className="block"
-                style={{ background: "linear-gradient(90deg, #4ade80, #22d3ee, #60a5fa)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", letterSpacing: "-0.02em" }}
+                style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
               >
-                AI
+                Eat Smarter.
               </motion.span>
             </h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="text-xl text-white/60 font-light max-w-lg mb-4"
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}
+              className="text-base text-white/55 max-w-lg mb-8 leading-relaxed"
             >
-              AI-Powered Smart Nutrition Analysis & Health Intelligence Platform
+              AI-powered nutrition analysis with calorie tracking, vitamin breakdown, health scoring, and personalized dietary recommendations. Simply snap a photo of your meal.
             </motion.p>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-sm text-white/40 max-w-lg mb-10 leading-relaxed"
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10"
             >
-              Simply upload a photo of your meal. Our advanced computer vision instantly identifies the food, calculates precise macronutrients, and provides personalized health insights. No more manual logging.
-            </motion.p>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-            >
-              <button 
+              <button
                 onClick={() => navigate("/scanner")}
-                className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-full px-8 py-4 font-bold text-lg hover:scale-105 shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] transition-all flex items-center justify-center gap-2 group"
+                className="flex items-center justify-center gap-2 rounded-full px-8 py-4 font-bold text-base transition-all hover:scale-105 group"
+                style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617", boxShadow: "0 0 25px rgba(57,255,136,0.35)" }}
               >
-                Get Started <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <Camera className="w-5 h-5" /> Start Scanning
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-              <button 
+              <button
                 onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                className="border border-white/20 bg-white/5 hover:bg-white/10 rounded-full px-8 py-4 font-semibold text-white/80 hover:text-white transition-all backdrop-blur-md"
+                className="flex items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-white/80 hover:text-white transition-all"
+                style={{ border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.04)", backdropFilter: "blur(12px)" }}
               >
                 Explore Features
               </button>
             </motion.div>
+
+            {/* Trusted users */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.65 }}
+              className="flex items-center gap-4"
+            >
+              <div className="flex -space-x-2">
+                {["🧑‍💻", "👩‍⚕️", "🏃", "👨‍🍳"].map((emoji, i) => (
+                  <div key={i} className="w-9 h-9 rounded-full border-2 flex items-center justify-center text-sm" style={{ borderColor: "#39FF88", background: "rgba(57,255,136,0.1)" }}>{emoji}</div>
+                ))}
+              </div>
+              <div>
+                <div className="flex items-center gap-1 mb-0.5">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-[#39FF88] text-[#39FF88]" />)}
+                </div>
+                <p className="text-xs text-white/50"><span className="text-white font-bold">10,000+</span> meals analyzed</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* RIGHT: Food bowl with floating cards */}
+          <div className="relative flex items-center justify-center order-2 lg:h-[560px]">
+            <div className="relative w-80 h-80">
+              <FoodBowlIllustration />
+            </div>
+            <NutritionCard />
+            <HealthScoreCard />
           </div>
         </div>
       </section>
 
-      {/* STATS TICKER */}
-      <section className="w-full bg-white/5 backdrop-blur-md border-y border-white/5 relative z-20">
-        <div className="max-w-7xl mx-auto px-6 overflow-hidden py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/10">
+      {/* ── STATS TICKER ── */}
+      <section className="w-full border-y border-white/5 relative z-20" style={{ background: "rgba(57,255,136,0.03)", backdropFilter: "blur(20px)" }}>
+        <div className="max-w-7xl mx-auto px-6 py-7">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x divide-white/10">
             {[
-              { val: "10,000+", label: "Meals Analyzed" },
-              { val: "98%", label: "Accuracy Rate" },
-              { val: "50+", label: "Nutrients Tracked" },
-              { val: "Instant", label: "AI Analysis" },
+              { val: "10,000+", label: "Meals Analyzed", icon: "🍽️" },
+              { val: "98%", label: "Accuracy Rate", icon: "🎯" },
+              { val: "50+", label: "Nutrients Tracked", icon: "🧪" },
+              { val: "< 3s", label: "Instant AI Analysis", icon: "⚡" },
             ].map((stat, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center justify-center py-2 md:py-0 w-full text-center">
-                <span className="text-3xl font-black text-emerald-400 mb-1">{stat.val}</span>
-                <span className="text-white/50 text-sm font-medium tracking-wider uppercase">{stat.label}</span>
+              <div key={i} className="flex flex-col items-center justify-center text-center py-2 md:py-0">
+                <div className="text-2xl mb-1">{stat.icon}</div>
+                <span className="text-2xl font-black mb-0.5" style={{ color: "#39FF88" }}>{stat.val}</span>
+                <span className="text-white/50 text-xs font-medium tracking-wider uppercase">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FEATURES SECTION */}
-      <section id="features" ref={featuresRef} className="py-32 relative z-10">
+      {/* ── FEATURES SECTION ── */}
+      <section id="features" ref={featuresRef} className="py-28 relative z-10">
+        {/* bg orb */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(57,255,136,0.04) 0%, transparent 70%)" }} />
+
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-              <span className="block text-white">INTELLIGENT NUTRITION</span>
-              <span className="block bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">FEATURES</span>
-            </h2>
-            <p className="text-xl text-white/50 font-light">Everything you need to understand your food</p>
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} animate={featuresInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4 text-xs font-semibold uppercase tracking-widest"
+              style={{ borderColor: "rgba(57,255,136,0.25)", background: "rgba(57,255,136,0.06)", color: "#39FF88" }}
+            >
+              <Zap className="w-3.5 h-3.5" /> Powerful Features
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }} animate={featuresInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl md:text-5xl font-black tracking-tight mb-4"
+            >
+              <span className="text-white">Intelligent Nutrition</span>{" "}
+              <span style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Features</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }} animate={featuresInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.15 }}
+              className="text-lg text-white/45 font-light max-w-xl mx-auto"
+            >
+              Everything you need to deeply understand your food and optimize your health
+            </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { icon: ScanSearch, title: "Food Recognition", desc: "AI computer vision instantly identifies any food with high precision" },
-              { icon: Flame, title: "Calorie Estimation", desc: "Accurate calorie counts from a single photo, no manual logging needed" },
-              { icon: Activity, title: "Macronutrient Analysis", desc: "Complete protein, carbs, fat, and fiber breakdown per serving" },
-              { icon: Brain, title: "AI Health Insights", desc: "Personalized health scoring and pattern recognition across all meals" },
-              { icon: Zap, title: "Smart Recommendations", desc: "Tailored dietary advice based on your unique nutritional profile" },
-              { icon: BarChart3, title: "Nutrition Analytics", desc: "Visual trends, weekly reports, and long-term health progress tracking" },
+              { icon: ScanSearch, title: "Food Recognition", desc: "AI computer vision instantly identifies any food from a photo with high precision", color: "#39FF88", emoji: "🔍" },
+              { icon: Flame, title: "Calorie Estimation", desc: "Accurate calorie counts from a single photo — no manual logging needed", color: "#f97316", emoji: "🔥" },
+              { icon: Activity, title: "Macro Analysis", desc: "Complete protein, carbs, fat, and fiber breakdown per serving", color: "#06b6d4", emoji: "📊" },
+              { icon: Leaf, title: "Vitamin Detection", desc: "Full micronutrient and vitamin profile breakdown for every scan", color: "#4ade80", emoji: "🌿" },
+              { icon: Brain, title: "AI Recommendations", desc: "Personalized dietary advice tailored to your unique nutritional profile", color: "#a855f7", emoji: "🧠" },
+              { icon: TrendingUp, title: "Health Score", desc: "AI-powered health scoring based on your meal history and goals", color: "#f59e0b", emoji: "⭐" },
+              { icon: Database, title: "Nutrition Tracking", desc: "Smart long-term tracking with weekly reports and trend analysis", color: "#ec4899", emoji: "📈" },
+              { icon: Clock, title: "Scan History", desc: "Full searchable history of every meal you've ever scanned", color: "#14b8a6", emoji: "🗂️" },
             ].map((feat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 35 }}
                 animate={featuresInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-white/3 backdrop-blur-xl border border-white/10 rounded-2xl p-8 hover:-translate-y-2 hover:border-emerald-500/30 transition-all duration-500 group"
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative rounded-2xl p-6 cursor-pointer transition-all duration-500 hover:-translate-y-2"
+                style={{
+                  background: "rgba(255,255,255,0.03)",
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  backdropFilter: "blur(12px)",
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget;
+                  el.style.border = `1px solid ${feat.color}40`;
+                  el.style.boxShadow = `0 0 30px ${feat.color}10, 0 20px 40px rgba(0,0,0,0.3)`;
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget;
+                  el.style.border = "1px solid rgba(255,255,255,0.07)";
+                  el.style.boxShadow = "none";
+                }}
               >
-                <div className="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-6 group-hover:bg-emerald-500/20 transition-colors">
-                  <feat.icon className="w-7 h-7 text-emerald-400" />
+                <div className="text-3xl mb-4">{feat.emoji}</div>
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-colors" style={{ background: `${feat.color}15` }}>
+                  <feat.icon className="w-5 h-5" style={{ color: feat.color }} />
                 </div>
-                <h3 className="font-bold text-white text-xl mb-3">{feat.title}</h3>
-                <p className="text-white/50 text-sm leading-relaxed">{feat.desc}</p>
+                <h3 className="font-bold text-white text-base mb-2">{feat.title}</h3>
+                <p className="text-white/45 text-sm leading-relaxed">{feat.desc}</p>
+                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ArrowRight className="w-4 h-4" style={{ color: feat.color }} />
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* DASHBOARD MOCKUP */}
-      <section className="py-20 relative z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-emerald-500/5 blur-[100px] pointer-events-none rounded-full" />
-        
-        <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight">
-            <span className="text-white">SEE IT IN </span>
-            <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">ACTION</span>
-          </h2>
+      {/* ── HOW IT WORKS ── */}
+      <section id="how-it-works" ref={howItWorksRef} className="py-24 relative z-10 border-y border-white/5" style={{ background: "rgba(255,255,255,0.012)" }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }} animate={howItWorksInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4 text-xs font-semibold uppercase tracking-widest"
+              style={{ borderColor: "rgba(57,255,136,0.25)", background: "rgba(57,255,136,0.06)", color: "#39FF88" }}
+            >
+              <CheckCircle2 className="w-3.5 h-3.5" /> Simple Process
+            </motion.div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }} animate={howItWorksInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl md:text-5xl font-black tracking-tight mb-4"
+            >
+              <span className="text-white">How It </span>
+              <span style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Works</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }} animate={howItWorksInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.15 }}
+              className="text-lg text-white/45"
+            >
+              Four simple steps to smarter nutrition
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            {/* Connecting line (desktop) */}
+            <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-px pointer-events-none" style={{ background: "linear-gradient(90deg, transparent, rgba(57,255,136,0.3), rgba(6,182,212,0.3), rgba(57,255,136,0.3), transparent)" }} />
+
+            {[
+              { num: "01", title: "Upload Food Image", desc: "Snap or upload a photo of your meal — any food, any angle", icon: Camera, emoji: "📸", color: "#39FF88" },
+              { num: "02", title: "AI Vision Analysis", desc: "Our advanced Claude AI identifies every ingredient and portion size", icon: Brain, emoji: "🤖", color: "#06b6d4" },
+              { num: "03", title: "Nutrition Breakdown", desc: "Get detailed calories, macros, vitamins, and mineral analysis", icon: BarChart3, emoji: "📊", color: "#a855f7" },
+              { num: "04", title: "Health Recommendations", desc: "Receive personalized AI-powered dietary advice and health insights", icon: Heart, emoji: "💡", color: "#f59e0b" },
+            ].map((step, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                animate={howItWorksInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+                className="flex flex-col items-center text-center relative"
+              >
+                <div className="relative mb-6 z-10">
+                  <div className="w-24 h-24 rounded-2xl flex items-center justify-center text-4xl" style={{ background: `${step.color}12`, border: `1px solid ${step.color}30`, boxShadow: `0 0 25px ${step.color}15` }}>
+                    {step.emoji}
+                  </div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full flex items-center justify-center text-xs font-black" style={{ background: step.color, color: "#020617" }}>
+                    {step.num}
+                  </div>
+                </div>
+                <h3 className="font-bold text-white text-lg mb-3">{step.title}</h3>
+                <p className="text-white/50 text-sm max-w-[220px] leading-relaxed">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── DASHBOARD PREVIEW ── */}
+      <section ref={dashboardRef} className="py-24 relative z-10 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] rounded-full blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(57,255,136,0.05) 0%, transparent 70%)" }} />
+
+        <div className="max-w-7xl mx-auto px-6 mb-12 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={dashboardInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-4 text-xs font-semibold uppercase tracking-widest"
+            style={{ borderColor: "rgba(57,255,136,0.25)", background: "rgba(57,255,136,0.06)", color: "#39FF88" }}
+          >
+            <BarChart3 className="w-3.5 h-3.5" /> Live Dashboard
+          </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }} animate={dashboardInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl md:text-5xl font-black tracking-tight mb-4"
+          >
+            <span className="text-white">See It In </span>
+            <span style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Action</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={dashboardInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: 0.15 }}
+            className="text-white/45"
+          >
+            A premium analytics dashboard at your fingertips
+          </motion.p>
         </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6" ref={mockupRef}>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={mockupInView ? { opacity: 1, scale: 1 } : {}}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 30 }}
+            animate={dashboardInView ? { opacity: 1, scale: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="bg-[#0a0f1c]/90 backdrop-blur-2xl border border-white/10 rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/10 flex flex-col md:flex-row h-[600px]"
+            className="rounded-3xl overflow-hidden border border-white/10"
+            style={{ background: "rgba(8,15,30,0.95)", boxShadow: "0 0 80px rgba(57,255,136,0.08), 0 50px 100px rgba(0,0,0,0.5)" }}
           >
-            {/* Sidebar Mockup */}
-            <div className="w-64 border-r border-white/10 p-6 hidden md:flex flex-col bg-white/[0.02]">
-              <div className="flex items-center gap-2 mb-10">
-                <LogoEmblem className="w-6 h-6" />
-                <span className="font-bold text-lg">NutriScan AI</span>
-              </div>
-              <div className="flex flex-col gap-2 flex-1">
-                <div className="bg-emerald-500/20 text-emerald-400 px-4 py-2.5 rounded-lg text-sm font-medium flex items-center gap-3 border border-emerald-500/30">
-                  <Camera className="w-4 h-4" /> Scanner
+            {/* Window chrome */}
+            <div className="flex items-center gap-2 px-6 py-4 border-b border-white/10" style={{ background: "rgba(255,255,255,0.02)" }}>
+              <div className="w-3 h-3 rounded-full bg-red-500/70" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
+              <div className="w-3 h-3 rounded-full bg-green-500/70" />
+              <div className="flex-1 mx-4">
+                <div className="bg-white/5 border border-white/10 rounded-full px-4 py-1 text-xs text-white/30 text-center max-w-xs mx-auto">
+                  nutriscan.ai/dashboard
                 </div>
-                {['History', 'Analytics', 'AI Insights', 'Settings'].map((item) => (
-                  <div key={item} className="text-white/50 px-4 py-2.5 rounded-lg text-sm font-medium flex items-center gap-3">
-                    <div className="w-4 h-4 rounded bg-white/10" /> {item}
-                  </div>
-                ))}
               </div>
-              <div className="mt-auto bg-white/5 rounded-xl p-4 border border-white/10 flex items-center gap-4">
-                <svg width="40" height="40" viewBox="0 0 40 40" className="rotate-[-90deg]">
-                  <circle cx="20" cy="20" r="16" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
-                  <circle cx="20" cy="20" r="16" fill="none" stroke="#22c55e" strokeWidth="4" strokeDasharray="100" strokeDashoffset="40" strokeLinecap="round" />
-                </svg>
-                <div>
-                  <div className="text-xs text-white/50">Daily Goal</div>
-                  <div className="text-sm font-bold text-white">1200 / 2000</div>
-                </div>
+              <div className="flex items-center gap-1 px-2 py-1 rounded-full text-xs" style={{ background: "rgba(57,255,136,0.1)", color: "#39FF88", border: "1px solid rgba(57,255,136,0.2)" }}>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#39FF88] animate-pulse" /> Live
               </div>
             </div>
 
-            {/* Content Mockup */}
-            <div className="flex-1 p-6 sm:p-8 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PHBhdGggZD0iTTAgMEgyMFYyMEgwWiIgZmlsbD0ibm9uZSIvPjxjaXJjbGUgY3g9IjEiIGN5PSIxIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+PC9zdmc+')]">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full">
-                {/* Result Card */}
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col justify-between">
-                  <div>
-                    <div className="text-xs font-semibold tracking-wider text-emerald-400 uppercase mb-2">Scan Result</div>
-                    <div className="text-2xl font-bold text-white mb-1">Avocado Toast</div>
-                    <div className="text-5xl font-black text-emerald-400 mb-6">620 <span className="text-xl text-white/50 font-normal">kcal</span></div>
+            <div className="flex h-[560px]">
+              {/* Sidebar */}
+              <div className="w-56 border-r border-white/8 p-5 hidden md:flex flex-col" style={{ background: "rgba(255,255,255,0.015)" }}>
+                <div className="flex items-center gap-2 mb-8">
+                  <LogoEmblem className="w-6 h-6" />
+                  <span className="font-bold text-sm">NutriScan AI</span>
+                </div>
+                <div className="flex flex-col gap-1.5 flex-1">
+                  <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium" style={{ background: "rgba(57,255,136,0.12)", color: "#39FF88", border: "1px solid rgba(57,255,136,0.2)" }}>
+                    <Camera className="w-4 h-4" /> Scanner
                   </div>
-                  <div className="flex gap-2 mb-6">
-                    <div className="bg-blue-500/10 border border-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-medium">P: 18g</div>
-                    <div className="bg-orange-500/10 border border-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs font-medium">C: 45g</div>
-                    <div className="bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-medium">F: 32g</div>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/5 p-3 rounded-xl">
-                    <ActivityIcon className="w-5 h-5 text-emerald-400" />
-                    <span className="text-sm font-medium text-white/80">Health Score</span>
-                    <span className="ml-auto font-bold text-emerald-400">78 / 100</span>
+                  {[
+                    { label: "History", emoji: "🗂️" },
+                    { label: "Analytics", emoji: "📊" },
+                    { label: "AI Insights", emoji: "🧠" },
+                    { label: "Settings", emoji: "⚙️" },
+                  ].map(item => (
+                    <div key={item.label} className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-white/45">
+                      <span>{item.emoji}</span> {item.label}
+                    </div>
+                  ))}
+                </div>
+                {/* Daily goal ring */}
+                <div className="rounded-xl p-3 border border-white/8" style={{ background: "rgba(255,255,255,0.04)" }}>
+                  <div className="text-xs text-white/50 mb-2">Daily Calories</div>
+                  <div className="flex items-center gap-3">
+                    <svg width="36" height="36" viewBox="0 0 36 36" className="rotate-[-90deg]">
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3.5" />
+                      <circle cx="18" cy="18" r="14" fill="none" stroke="#39FF88" strokeWidth="3.5" strokeDasharray="88" strokeDashoffset="26" strokeLinecap="round" />
+                    </svg>
+                    <div>
+                      <div className="text-sm font-black text-white">1,460</div>
+                      <div className="text-xs text-white/40">/ 2,000</div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Chart Card */}
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col">
-                  <div className="text-sm font-bold text-white mb-6">Weekly Calories</div>
-                  <div className="flex-1 min-h-0">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={chartData} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
-                        <XAxis dataKey="name" stroke="rgba(255,255,255,0.3)" fontSize={12} tickLine={false} axisLine={false} />
-                        <YAxis stroke="rgba(255,255,255,0.3)" fontSize={12} tickLine={false} axisLine={false} />
-                        <Tooltip cursor={{ fill: 'rgba(255,255,255,0.05)' }} contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }} />
-                        <Bar dataKey="cals" radius={[4, 4, 0, 0]}>
-                          {chartData.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={index === 4 ? '#22c55e' : 'rgba(255,255,255,0.2)'} />
+              {/* Main content */}
+              <div className="flex-1 p-6 overflow-hidden">
+                {/* Top stats */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-5">
+                  {[
+                    { label: "Calories", val: "1,460", unit: "kcal", color: "#39FF88", icon: "🔥" },
+                    { label: "Health Score", val: "87", unit: "/100", color: "#06b6d4", icon: "⭐" },
+                    { label: "Protein", val: "82g", unit: "/ 120g", color: "#a855f7", icon: "💪" },
+                    { label: "Hydration", val: "68%", unit: "of goal", color: "#f59e0b", icon: "💧" },
+                  ].map(s => (
+                    <div key={s.label} className="rounded-xl p-4 border border-white/8" style={{ background: "rgba(255,255,255,0.04)" }}>
+                      <div className="flex items-center gap-1.5 mb-2">
+                        <span className="text-base">{s.icon}</span>
+                        <span className="text-xs text-white/50">{s.label}</span>
+                      </div>
+                      <div className="text-xl font-black" style={{ color: s.color }}>{s.val}<span className="text-xs text-white/30 font-normal ml-1">{s.unit}</span></div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Charts row */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[300px]">
+                  {/* Weekly bar chart */}
+                  <div className="rounded-xl p-5 border border-white/8 flex flex-col" style={{ background: "rgba(255,255,255,0.04)" }}>
+                    <div className="text-sm font-bold text-white mb-4">Weekly Calories</div>
+                    <div className="flex-1 min-h-0">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <BarChart data={chartData} margin={{ top: 0, right: 0, left: -25, bottom: 0 }}>
+                          <XAxis dataKey="name" stroke="rgba(255,255,255,0.25)" fontSize={11} tickLine={false} axisLine={false} />
+                          <YAxis stroke="rgba(255,255,255,0.25)" fontSize={11} tickLine={false} axisLine={false} />
+                          <Tooltip cursor={{ fill: "rgba(57,255,136,0.04)" }} contentStyle={{ backgroundColor: "#0a0f1e", border: "1px solid rgba(57,255,136,0.2)", borderRadius: "8px", color: "white", fontSize: "12px" }} />
+                          <Bar dataKey="cals" radius={[4, 4, 0, 0]}>
+                            {chartData.map((_, idx) => (
+                              <Cell key={idx} fill={idx === 6 ? "#39FF88" : "rgba(57,255,136,0.25)"} />
+                            ))}
+                          </Bar>
+                        </BarChart>
+                      </ResponsiveContainer>
+                    </div>
+                  </div>
+
+                  {/* Right col */}
+                  <div className="flex flex-col gap-4">
+                    {/* Macro pie */}
+                    <div className="rounded-xl p-4 border border-white/8 flex items-center gap-4" style={{ background: "rgba(255,255,255,0.04)" }}>
+                      <div style={{ width: 70, height: 70 }}>
+                        <ResponsiveContainer width="100%" height="100%">
+                          <PieChart>
+                            <Pie data={macroData} cx="50%" cy="50%" innerRadius={22} outerRadius={33} dataKey="value" strokeWidth={0}>
+                              {macroData.map((entry, idx) => <Cell key={idx} fill={entry.fill} />)}
+                            </Pie>
+                          </PieChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="flex-1">
+                        <div className="text-xs font-bold text-white mb-2">Macro Split</div>
+                        <div className="grid grid-cols-2 gap-1">
+                          {macroData.map(m => (
+                            <div key={m.name} className="flex items-center gap-1">
+                              <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: m.fill }} />
+                              <span className="text-xs text-white/50">{m.name}</span>
+                            </div>
                           ))}
-                        </Bar>
-                      </BarChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-
-                {/* Nutrients Card */}
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 hidden lg:block">
-                  <div className="text-sm font-bold text-white mb-4">Micronutrients</div>
-                  <div className="space-y-3">
-                    {[
-                      { name: "Protein", val: 72, color: "bg-blue-500" },
-                      { name: "Fiber", val: 45, color: "bg-emerald-500" },
-                      { name: "Vitamin C", val: 88, color: "bg-orange-500" },
-                      { name: "Iron", val: 34, color: "bg-purple-500" },
-                    ].map(n => (
-                      <div key={n.name}>
-                        <div className="flex justify-between text-xs mb-1">
-                          <span className="text-white/70">{n.name}</span>
-                          <span className="text-white">{n.val}%</span>
-                        </div>
-                        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden">
-                          <div className={`h-full rounded-full ${n.color}`} style={{ width: `${n.val}%` }} />
                         </div>
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </div>
 
-                {/* Insights Card */}
-                <div className="bg-gradient-to-br from-emerald-500/10 to-cyan-500/5 border border-emerald-500/20 rounded-2xl p-6 hidden lg:block">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Brain className="w-5 h-5 text-emerald-400" />
-                    <span className="text-sm font-bold text-white">AI Insights</span>
-                  </div>
-                  <div className="space-y-3 text-sm text-white/70">
-                    <div className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
-                      <p>Great source of healthy monounsaturated fats from avocado.</p>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
-                      <p>Consider adding an egg for a complete protein profile.</p>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
-                      <p>Sodium content is optimal (12% of daily value).</p>
+                    {/* AI insight */}
+                    <div className="rounded-xl p-4 border flex-1 flex flex-col justify-between" style={{ background: "linear-gradient(135deg, rgba(57,255,136,0.08), rgba(6,182,212,0.04))", borderColor: "rgba(57,255,136,0.2)" }}>
+                      <div className="flex items-center gap-2 mb-3">
+                        <Brain className="w-4 h-4" style={{ color: "#39FF88" }} />
+                        <span className="text-sm font-bold text-white">AI Recommendation</span>
+                      </div>
+                      <p className="text-xs text-white/60 leading-relaxed">You're 18g short of your protein goal. Consider adding Greek yogurt or a protein-rich snack this afternoon. ✨</p>
+                      <div className="mt-3 flex items-center gap-1 text-xs" style={{ color: "#39FF88" }}>
+                        <Sparkles className="w-3.5 h-3.5" /> Powered by Claude AI
+                      </div>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section id="how-it-works" className="py-24 relative z-10 bg-white/[0.02] border-y border-white/5">
+      {/* ── MOBILE APP MOCKUP ── */}
+      <section ref={mobileRef} className="py-24 relative z-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-black mb-4">HOW IT WORKS</h2>
-            <p className="text-white/50">Three simple steps to smarter nutrition</p>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left text */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={mobileInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.7 }}
+            >
+              <div
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-6 text-xs font-semibold uppercase tracking-widest"
+                style={{ borderColor: "rgba(57,255,136,0.25)", background: "rgba(57,255,136,0.06)", color: "#39FF88" }}
+              >
+                <Smartphone className="w-3.5 h-3.5" /> Mobile Experience
+              </div>
+              <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">
+                <span className="text-white">Nutrition On </span>
+                <span style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>The Go</span>
+              </h2>
+              <p className="text-white/50 mb-8 leading-relaxed">
+                Scan your meals from anywhere. Our fully responsive experience works perfectly on any device — get instant AI nutrition analysis from the convenience of your phone.
+              </p>
+              <div className="space-y-4 mb-8">
+                {[
+                  { title: "Instant Camera Scan", desc: "Open your camera and scan any meal in seconds" },
+                  { title: "Offline History", desc: "Access your meal history even without an internet connection" },
+                  { title: "Smart Notifications", desc: "Get personalized reminders to stay on track with your goals" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "#39FF88" }} />
+                    <div>
+                      <div className="text-sm font-bold text-white">{item.title}</div>
+                      <div className="text-sm text-white/45">{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button
+                onClick={() => navigate("/scanner")}
+                className="flex items-center gap-2 rounded-full px-8 py-4 font-bold text-sm transition-all hover:scale-105"
+                style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617", boxShadow: "0 0 20px rgba(57,255,136,0.3)" }}
+              >
+                Try It Now <ArrowRight className="w-4 h-4" />
+              </button>
+            </motion.div>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-0 relative">
-            <div className="hidden md:block absolute top-8 left-[20%] right-[20%] h-[2px] bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent border-dashed" />
-            
-            {[
-              { num: "01", title: "Upload Photo", desc: "Snap a picture of your meal", icon: Camera },
-              { num: "02", title: "AI Analysis", desc: "Our engine identifies the food", icon: Brain },
-              { num: "03", title: "Get Results", desc: "View detailed macro breakdown", icon: BarChart3 },
-            ].map((step, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center text-center relative z-10">
-                <div className="w-16 h-16 rounded-full bg-[#020617] border border-emerald-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(34,197,94,0.15)] mb-6 relative">
-                  <step.icon className="w-6 h-6 text-emerald-400" />
-                  <div className="absolute -top-2 -right-2 bg-emerald-500 text-[#020617] text-xs font-black w-6 h-6 rounded-full flex items-center justify-center">
-                    {step.num}
+            {/* Right: phone mockup */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={mobileInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex justify-center"
+            >
+              <div className="relative">
+                {/* Glow behind phone */}
+                <div className="absolute inset-0 rounded-[40px] blur-3xl scale-75 -z-10" style={{ background: "linear-gradient(135deg, rgba(57,255,136,0.2), rgba(6,182,212,0.15))" }} />
+
+                {/* Phone frame */}
+                <div className="relative w-64 rounded-[40px] overflow-hidden border-4" style={{ borderColor: "rgba(255,255,255,0.15)", background: "#080f1e", boxShadow: "0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05), inset 0 0 0 1px rgba(255,255,255,0.05)" }}>
+                  {/* Status bar */}
+                  <div className="flex items-center justify-between px-5 py-3" style={{ background: "#040a14" }}>
+                    <span className="text-xs text-white/60 font-medium">9:41</span>
+                    <div className="w-20 h-5 rounded-full" style={{ background: "#040a14", border: "2px solid rgba(255,255,255,0.1)" }} />
+                    <div className="flex items-center gap-1">
+                      <div className="flex gap-0.5 items-end">
+                        {[3,5,7,7].map((h,i) => <div key={i} className="w-1 rounded-sm bg-white/60" style={{ height: `${h}px` }} />)}
+                      </div>
+                      <div className="w-5 h-2.5 rounded-sm border border-white/40 relative">
+                        <div className="absolute inset-0.5 right-1 rounded-sm bg-white/70" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* App content */}
+                  <div className="px-4 py-4" style={{ minHeight: "520px", background: "linear-gradient(180deg, #040a14 0%, #020617 100%)" }}>
+                    {/* App header */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div>
+                        <div className="text-xs text-white/40 mb-0.5">Good morning!</div>
+                        <div className="text-sm font-bold text-white">Ready to scan?</div>
+                      </div>
+                      <div className="w-9 h-9 rounded-full flex items-center justify-center" style={{ background: "rgba(57,255,136,0.15)", border: "1px solid rgba(57,255,136,0.3)" }}>
+                        <LogoEmblem className="w-5 h-5" />
+                      </div>
+                    </div>
+
+                    {/* Scan button */}
+                    <motion.div
+                      animate={{ boxShadow: ["0 0 15px rgba(57,255,136,0.3)", "0 0 30px rgba(57,255,136,0.5)", "0 0 15px rgba(57,255,136,0.3)"] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="w-full rounded-2xl py-6 mb-5 flex flex-col items-center gap-2 cursor-pointer"
+                      style={{ background: "linear-gradient(135deg, rgba(57,255,136,0.15), rgba(6,182,212,0.08))", border: "1px solid rgba(57,255,136,0.3)" }}
+                    >
+                      <div className="text-3xl">📸</div>
+                      <div className="text-xs font-bold" style={{ color: "#39FF88" }}>Tap to Scan Meal</div>
+                    </motion.div>
+
+                    {/* Mini stats */}
+                    <div className="grid grid-cols-2 gap-2 mb-4">
+                      {[
+                        { label: "Calories", val: "820", color: "#39FF88" },
+                        { label: "Health", val: "91%", color: "#06b6d4" },
+                      ].map(s => (
+                        <div key={s.label} className="rounded-xl p-3 text-center" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                          <div className="text-base font-black" style={{ color: s.color }}>{s.val}</div>
+                          <div className="text-xs text-white/40">{s.label}</div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Recent scan */}
+                    <div className="rounded-xl p-3" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                      <div className="text-xs text-white/40 mb-2">Last Scan</div>
+                      <div className="flex items-center gap-3">
+                        <div className="text-2xl">🥗</div>
+                        <div className="flex-1">
+                          <div className="text-xs font-bold text-white">Avocado Salad</div>
+                          <div className="text-xs text-white/40">620 kcal · Score 94</div>
+                        </div>
+                        <div className="text-xs font-bold" style={{ color: "#39FF88" }}>94</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Home bar */}
+                  <div className="flex justify-center py-3" style={{ background: "#040a14" }}>
+                    <div className="w-24 h-1 rounded-full bg-white/20" />
                   </div>
                 </div>
-                <h3 className="font-bold text-white text-lg mb-2">{step.title}</h3>
-                <p className="text-white/50 text-sm max-w-[200px]">{step.desc}</p>
               </div>
-            ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* CTA SECTION */}
-      <section className="py-32 relative z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none" />
-        
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10 bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-12 md:p-20 shadow-2xl">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">
-            <span className="block text-white mb-2">READY TO TRANSFORM</span>
-            <span className="block bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">YOUR NUTRITION?</span>
-          </h2>
-          <p className="text-lg text-white/60 mb-10">Start your AI-powered nutrition journey today. Better insights, better health.</p>
-          
-          <button 
-            onClick={() => navigate("/scanner")}
-            className="bg-gradient-to-r from-emerald-500 to-cyan-500 text-white rounded-full px-10 py-5 font-bold text-xl hover:scale-105 shadow-[0_0_30px_rgba(34,197,94,0.4)] hover:shadow-[0_0_50px_rgba(34,197,94,0.6)] transition-all flex items-center justify-center gap-2 mx-auto group mb-6"
+      {/* ── CTA SECTION ── */}
+      <section className="py-28 relative z-10 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[120px] pointer-events-none" style={{ background: "radial-gradient(circle, rgba(57,255,136,0.1) 0%, transparent 70%)" }} />
+
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="rounded-3xl p-12 md:p-20 text-center relative overflow-hidden"
+            style={{ background: "linear-gradient(135deg, rgba(57,255,136,0.08) 0%, rgba(6,182,212,0.04) 50%, rgba(57,255,136,0.06) 100%)", border: "1px solid rgba(57,255,136,0.2)", boxShadow: "0 0 80px rgba(57,255,136,0.08)" }}
           >
-            Start Scanning Now <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-          </button>
-          
-          <p className="text-sm text-white/40">No account required • Instant analysis • Powered by Claude AI</p>
+            {/* Corner glow */}
+            <div className="absolute top-0 left-0 w-64 h-64 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(57,255,136,0.07)" }} />
+            <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full blur-3xl pointer-events-none" style={{ background: "rgba(6,182,212,0.05)" }} />
+
+            <div className="relative z-10">
+              <div className="text-5xl mb-6">🥗</div>
+              <h2 className="text-4xl md:text-5xl font-black mb-4">
+                <span className="text-white">Ready to Transform</span>
+                <br />
+                <span style={{ background: "linear-gradient(90deg, #39FF88, #06b6d4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Your Nutrition?</span>
+              </h2>
+              <p className="text-lg text-white/55 mb-10 max-w-xl mx-auto">
+                Start your AI-powered nutrition journey today. Better insights, better health — one scan at a time.
+              </p>
+              <button
+                onClick={() => navigate("/scanner")}
+                className="flex items-center gap-3 mx-auto rounded-full px-12 py-5 font-black text-lg transition-all hover:scale-105 group"
+                style={{ background: "linear-gradient(135deg, #39FF88, #06b6d4)", color: "#020617", boxShadow: "0 0 40px rgba(57,255,136,0.4)" }}
+              >
+                <Camera className="w-5 h-5" /> Start Scanning Now
+                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <p className="text-sm text-white/30 mt-6">No account required · Instant analysis · Powered by Claude AI</p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="bg-[#020617] border-t border-white/10 pt-16 pb-8 relative z-10">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center md:items-start justify-between gap-8 mb-12">
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <div className="flex items-center gap-2">
-              <LogoEmblem className="w-6 h-6" />
-              <span className="font-bold text-xl">NutriScan AI</span>
+      {/* ── FOOTER ── */}
+      <footer id="footer" className="border-t border-white/8 pt-16 pb-8 relative z-10" style={{ background: "rgba(2,6,23,0.98)" }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+            {/* Brand */}
+            <div className="md:col-span-1">
+              <div className="flex items-center gap-2 mb-4 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+                <LogoEmblem className="w-7 h-7" style={{ filter: "drop-shadow(0 0 6px rgba(57,255,136,0.6))" }} />
+                <span className="font-black text-lg text-white">NutriScan <span style={{ color: "#39FF88" }}>AI</span></span>
+              </div>
+              <p className="text-sm text-white/40 leading-relaxed mb-5">AI-powered nutrition intelligence for smarter, healthier eating decisions.</p>
+              <div className="flex items-center gap-3">
+                {[
+                  { icon: Twitter, href: "#" },
+                  { icon: Github, href: "#" },
+                  { icon: Instagram, href: "#" },
+                ].map(({ icon: Icon, href }, i) => (
+                  <a key={i} href={href} className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#39FF88] hover:border-[#39FF88]/40 transition-all">
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
             </div>
-            <p className="text-white/40 text-sm">AI-Powered Nutrition Intelligence</p>
+
+            {/* Quick Links */}
+            <div>
+              <div className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Product</div>
+              <div className="flex flex-col gap-2.5">
+                {[
+                  { label: "Scanner", action: () => navigate("/scanner") },
+                  { label: "History", action: () => navigate("/history") },
+                  { label: "Analytics", action: () => navigate("/analytics") },
+                  { label: "AI Insights", action: () => navigate("/ai-insights") },
+                  { label: "Settings", action: () => navigate("/settings") },
+                ].map(link => (
+                  <button key={link.label} onClick={link.action} className="text-sm text-white/40 hover:text-[#39FF88] transition-colors text-left">
+                    {link.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Features</div>
+              <div className="flex flex-col gap-2.5">
+                {["Food Recognition", "Calorie Tracking", "Macro Analysis", "Vitamin Detection", "Health Scoring", "AI Recommendations"].map(item => (
+                  <span key={item} className="text-sm text-white/40 cursor-default">{item}</span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="text-sm font-bold text-white mb-4 uppercase tracking-wider">Technology</div>
+              <div className="flex flex-col gap-2.5">
+                {["Powered by Claude AI", "Built on Replit", "React + Vite", "PostgreSQL", "Real-time Analysis"].map(item => (
+                  <span key={item} className="text-sm text-white/40 cursor-default">{item}</span>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-wrap gap-2">
+                <div className="px-3 py-1.5 rounded-full text-xs font-medium" style={{ background: "rgba(57,255,136,0.08)", border: "1px solid rgba(57,255,136,0.2)", color: "#39FF88" }}>
+                  🤖 Claude AI
+                </div>
+                <div className="px-3 py-1.5 rounded-full text-xs font-medium text-white/50" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}>
+                  ⚡ Replit
+                </div>
+              </div>
+            </div>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs font-medium backdrop-blur">
-              Powered by Claude AI
+
+          <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/8 gap-4">
+            <p className="text-xs text-white/25">© 2025 NutriScan AI · Powered by Anthropic Claude · All rights reserved</p>
+            <div className="flex gap-6">
+              <a href="#" className="text-xs text-white/25 hover:text-[#39FF88] transition-colors">Privacy Policy</a>
+              <a href="#" className="text-xs text-white/25 hover:text-[#39FF88] transition-colors">Terms of Service</a>
+              <a href="#" className="text-xs text-white/25 hover:text-[#39FF88] transition-colors">Cookie Policy</a>
             </div>
-            <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 text-xs font-medium backdrop-blur">
-              Built on Replit
-            </div>
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 text-center md:text-left text-white/30 text-xs flex flex-col md:flex-row justify-between pt-8 border-t border-white/5">
-          <p>© 2025 NutriScan AI • Powered by Anthropic Claude</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </footer>
