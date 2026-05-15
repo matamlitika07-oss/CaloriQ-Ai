@@ -141,7 +141,7 @@ export default function History() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.2 }}
                 key={scan.id} 
-                className="glass-card rounded-3xl overflow-hidden cursor-pointer hover:border-primary/50 hover:shadow-[0_0_30px_rgba(34,197,94,0.15)] transition-all duration-300 group flex flex-col border border-border/50"
+                className="glass-card-hover rounded-3xl overflow-hidden cursor-pointer group flex flex-col"
                 onClick={() => setSelectedScan(scan)}
               >
                 <div className="relative h-52 bg-card w-full shrink-0 flex items-center justify-center overflow-hidden">

@@ -225,7 +225,7 @@ export default function AiInsights() {
               <motion.div 
                 initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.1 }}
                 key={i} 
-                className={`glass-card rounded-2xl p-5 shrink-0 w-80 flex gap-4 border-l-4 ${colorClass}`}
+                className={`glass-card-hover rounded-2xl p-5 shrink-0 w-80 flex gap-4 border-l-4 ${colorClass}`}
               >
                 <div className={`mt-0.5 shrink-0 bg-background/50 p-2 rounded-lg ${iconColor}`}>
                   <Icon className="w-5 h-5" />

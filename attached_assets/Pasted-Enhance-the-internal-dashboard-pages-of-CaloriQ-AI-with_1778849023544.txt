@@ -1,0 +1,159 @@
+Enhance the internal dashboard pages of CaloriQ AI with PREMIUM GLASSMORPHISM and FOOD-THEMED BACKGROUND EFFECTS similar to the landing page — WITHOUT breaking any existing functionality.
+
+CURRENT ISSUE:
+The inside pages (Scanner, History, Analytics, AI Insights, Settings) look too plain and flat after entering the app.
+
+GOAL:
+Make the dashboard feel immersive, futuristic, premium, and visually connected to the landing page.
+
+IMPORTANT:
+
+* Do NOT redesign functionality.
+* Do NOT remove existing components.
+* Do NOT break routes, APIs, uploads, authentication, database, or responsiveness.
+* Only enhance visuals/UI styling.
+
+DESIGN STYLE:
+Create a PREMIUM FOOD-TECH AI DASHBOARD with:
+
+* glassmorphism
+* transparency
+* blur effects
+* realistic food-themed ambience
+* soft neon glow
+* cinematic gradients
+* layered depth
+
+BACKGROUND:
+Replace the plain dark background with:
+
+* dark textured gradient
+* blurred food photography overlays
+* soft green ambient lighting
+* subtle floating particles
+* radial glow effects
+* transparent layered gradients
+
+Use:
+
+```css id="4s9jka"
+background:
+radial-gradient(circle at top left, rgba(0,255,140,0.08), transparent 30%),
+radial-gradient(circle at bottom right, rgba(0,180,255,0.06), transparent 30%),
+linear-gradient(to bottom right, #020617, #04120f, #071b16);
+```
+
+ADD DEPTH:
+
+* subtle noise texture
+* vignette effect
+* floating blur circles
+* transparency overlays
+* soft shadows
+
+GLASSMORPHISM:
+Apply modern glass effect to:
+
+* upload card
+* analysis panel
+* history cards
+* analytics widgets
+* AI insight cards
+* settings panels
+* sidebar sections
+
+Glass style:
+
+```css id="k2lqmx"
+background: rgba(10, 18, 24, 0.45);
+backdrop-filter: blur(18px);
+border: 1px solid rgba(0,255,140,0.12);
+box-shadow:
+0 8px 32px rgba(0,0,0,0.35),
+0 0 25px rgba(0,255,140,0.05);
+```
+
+SIDEBAR ENHANCEMENT:
+Make sidebar more premium:
+
+* transparent dark glass
+* glowing active menu item
+* soft green side glow
+* animated hover effects
+* subtle gradient borders
+
+CARD IMPROVEMENTS:
+History cards and dashboard widgets should:
+
+* have glass effect
+* smooth hover animations
+* gradient glow borders
+* elevated shadows
+* subtle scaling on hover
+
+ADD VISUAL EFFECTS:
+
+* floating green particles
+* blurred glowing circles
+* animated pulse effects
+* soft moving gradients
+* transparent overlays
+
+SCANNER PAGE:
+Make upload area feel futuristic:
+
+* holographic scan glow
+* animated dotted border
+* glass upload box
+* subtle pulse animation
+* soft spotlight behind upload card
+
+ANALYTICS PAGE:
+Add:
+
+* glowing charts
+* transparent widgets
+* gradient progress bars
+* animated graphs
+* premium dashboard feel
+
+AI INSIGHTS PAGE:
+Use:
+
+* glowing recommendation cards
+* transparent AI panels
+* animated AI icons
+* futuristic health indicators
+
+SETTINGS PAGE:
+Create:
+
+* premium settings cards
+* modern toggle switches
+* transparent form panels
+* elegant spacing
+
+HISTORY PAGE:
+Fix missing uploaded images issue:
+
+* ensure uploaded food images render correctly from database/storage
+* add fallback placeholder if image missing
+* preserve existing data structure
+
+VERY IMPORTANT:
+Keep everything FAST and RESPONSIVE.
+Avoid excessive animations that may crash the website.
+
+DO NOT:
+
+* modify backend
+* change API logic
+* alter routing
+* remove existing pages
+* break authentication
+* affect database operations
+
+FINAL RESULT:
+The inside dashboard should feel like:
+“a premium futuristic AI nutrition operating system”
+with immersive transparency, food-tech ambience, glow effects, cinematic depth, and glassmorphism — visually matching the landing page perfectly.

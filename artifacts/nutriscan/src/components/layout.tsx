@@ -138,6 +138,25 @@ export function Layout({ children }: { children: ReactNode }) {
       </nav>
       
       <main className="flex-1 overflow-auto bg-mesh relative">
+        {/* Floating ambient orbs — purely decorative, non-interactive */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div
+            className="absolute top-[12%] left-[18%] w-[480px] h-[480px] rounded-full blur-[140px] opacity-60"
+            style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.07) 0%, transparent 70%)', animation: 'float-orb 14s ease-in-out infinite' }}
+          />
+          <div
+            className="absolute bottom-[20%] right-[12%] w-[400px] h-[400px] rounded-full blur-[120px] opacity-50"
+            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.06) 0%, transparent 70%)', animation: 'float-orb 18s ease-in-out infinite 4s' }}
+          />
+          <div
+            className="absolute top-[55%] left-[50%] w-[320px] h-[320px] rounded-full blur-[100px] opacity-40"
+            style={{ background: 'radial-gradient(circle, rgba(34,197,94,0.05) 0%, transparent 70%)', animation: 'float-orb 22s ease-in-out infinite 8s' }}
+          />
+          <div
+            className="absolute top-[5%] right-[30%] w-[260px] h-[260px] rounded-full blur-[100px] opacity-30"
+            style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.05) 0%, transparent 70%)', animation: 'float-orb 16s ease-in-out infinite 2s' }}
+          />
+        </div>
         <div className="p-6 md:p-10 max-w-6xl mx-auto h-full relative z-10">
           {children}
         </div>

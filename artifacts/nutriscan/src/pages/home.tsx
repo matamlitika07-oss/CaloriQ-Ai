@@ -75,10 +75,14 @@ export default function Home() {
 
       <div className="grid lg:grid-cols-3 gap-8 items-start">
         <div className="lg:col-span-1 flex flex-col gap-6 sticky top-8">
+          {/* Spotlight glow behind upload card */}
+          {!preview && (
+            <div className="absolute top-[10%] left-[5%] w-64 h-64 bg-primary/10 rounded-full blur-[80px] pointer-events-none -z-10" />
+          )}
           <motion.div 
             className={`relative w-full aspect-square md:aspect-[4/3] rounded-3xl border-2 border-dashed flex flex-col items-center justify-center p-6 text-center cursor-pointer overflow-hidden transition-colors ${
-              dragActive ? 'border-primary bg-primary/10' : preview ? 'border-primary/30 bg-primary/5' : 'border-border hover:border-primary/50 hover:bg-card/50 glass-card'
-            }`}
+              dragActive ? 'border-primary bg-primary/10' : preview ? 'border-primary/30 bg-primary/5' : 'border-primary/20 hover:border-primary/50 hover:bg-card/50 glass-card holographic-border'
+            } ${!preview && !dragActive ? 'scanner-pulse' : ''}`}
             onDragOver={(e) => { e.preventDefault(); setDragActive(true); }}
             onDragLeave={() => setDragActive(false)}
             onDrop={handleDrop}

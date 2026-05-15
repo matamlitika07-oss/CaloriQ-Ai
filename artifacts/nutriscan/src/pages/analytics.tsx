@@ -168,25 +168,25 @@ export default function Analytics() {
         <>
           {/* Summary Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-card rounded-2xl p-5 flex flex-col justify-center items-center text-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass-card-hover rounded-2xl p-5 flex flex-col justify-center items-center text-center">
               <ScanSearch className="w-8 h-8 text-foreground mb-3" />
               <div className="text-3xl md:text-4xl font-black tabular-nums">{stats.scans}</div>
               <div className="text-xs text-muted-foreground font-bold uppercase tracking-widest mt-1">Total Scans</div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-card rounded-2xl p-5 flex flex-col justify-center items-center text-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="glass-card-hover rounded-2xl p-5 flex flex-col justify-center items-center text-center">
               <Flame className="w-8 h-8 text-primary mb-3 drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]" />
               <div className="text-3xl md:text-4xl font-black tabular-nums">{stats.avgCals}</div>
               <div className="text-xs text-primary font-bold uppercase tracking-widest mt-1">Avg Calories</div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="glass-card rounded-2xl p-5 flex flex-col justify-center items-center text-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="glass-card-hover rounded-2xl p-5 flex flex-col justify-center items-center text-center">
               <Heart className="w-8 h-8 mb-3" style={{ color: getHealthColor(stats.avgScore) }} />
               <div className="text-3xl md:text-4xl font-black tabular-nums" style={{ color: getHealthColor(stats.avgScore) }}>{stats.avgScore}</div>
               <div className="text-xs text-muted-foreground font-bold uppercase tracking-widest mt-1">Avg Score</div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card rounded-2xl p-5 flex flex-col justify-center items-center text-center">
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="glass-card-hover rounded-2xl p-5 flex flex-col justify-center items-center text-center">
               <Trophy className="w-8 h-8 text-secondary mb-3 drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" />
               <div className="text-xl md:text-2xl font-black truncate w-full px-2 capitalize">{stats.bestMeal}</div>
               <div className="text-xs text-secondary font-bold uppercase tracking-widest mt-1">Best Meal</div>
